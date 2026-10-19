@@ -63,9 +63,9 @@ dock.classList.add('ready');
 const searchToggle=$('#search-toggle');
 function setSearch(open){dock.classList.toggle('open',open);dock.toggleAttribute('inert',!open);dock.setAttribute('aria-hidden',String(!open));searchToggle.setAttribute('aria-expanded',String(open));if(open){const n=$('#site-nav');n.classList.remove('open');$('#menu-toggle').setAttribute('aria-expanded','false');queryInput.focus();}else queryInput.blur();}
 searchToggle.addEventListener('click',()=>setSearch(!dock.classList.contains('open')));
-const queryTargets={papers:'#writing',mathematics:'#patterns',astronomy:'#observations',outreach:'#people',about:'#about',contact:'#contact',work:'#work',hello:'#top'};
+const queryTargets={telescope:'#observatory',papers:'#writing',mathematics:'#patterns',astronomy:'#observations',outreach:'#people',about:'#about',contact:'#contact',work:'#work',hello:'#top'};
 function interpret(raw){const t=raw.toLowerCase().trim();if(!t)return null;
- const scores={papers:0,mathematics:0,astronomy:0,outreach:0,about:0,contact:0,work:0,hello:0};
+ const scores={papers:0,mathematics:0,astronomy:0,outreach:0,about:0,contact:0,work:0,hello:0,telescope:0};
  const terms={
  papers:/publish|paper|preprint|article|journal|manuscript|writing|ssrn|oeis|citation|publication|record/,
  mathematics:/math|theorem|recurrence|sequence|integer|generating function|algebra|proof|combinatoric|prime|conjecture/,
@@ -84,7 +84,7 @@ function interpret(raw){const t=raw.toLowerCase().trim();if(!t)return null;
 }
 function goTo(selector){const node=$(selector);if(node){node.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});return true}return false;}
 function navigate(raw){const intent=interpret(raw);
- const messages={papers:'Showing selected public publications.',mathematics:'Showing mathematical research.',astronomy:'Showing astronomy research.',outreach:'Showing work with the NoRCEL Institute.',about:'Showing the biography.',contact:'Showing public professional contacts.',work:'Showing an overview of research.',hello:'Returning to the beginning.'};
+ const messages={telescope:'Opening the interactive star finder.',papers:'Showing selected public publications.',mathematics:'Showing mathematical research.',astronomy:'Showing astronomy research.',outreach:'Showing work with the NoRCEL Institute.',about:'Showing the biography.',contact:'Showing public professional contacts.',work:'Showing an overview of research.',hello:'Returning to the beginning.'};
  if(intent==='unknown')return {message:'No section found. Try “publications”, “astronomy”, “mathematics”, “NoRCEL”, “biography” or “contact”.',ok:false};
  goTo(queryTargets[intent]);return {message:messages[intent],ok:true};
 }

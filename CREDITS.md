@@ -1,0 +1,5 @@
+# Star data and design credits
+
+Equatorial sky atlas star coordinates and magnitudes (J2000) transcribed from publicly listed facts in a Yale Bright Star Catalogue-derived public resource: https://github.com/AgastyaTeja1/project-2026-05-12-sky-moment/blob/main/src/data/stars.ts . Numerical star positions are factual astronomical data. No code, original graphic assets, or constellation-line arrays were copied from that repository. Additional public-domain catalog description: https://github.com/aduboisforge/Bright-Star-Catalog-JSON .
+
+This is a symbolic, simplified equatorial projection, not live or telescope imagery. Rough observer altitude/azimuth omits precession/nutation, refraction, parallax and proper motion. Image assets from the previous site are illustrative and not observational data. Organizational and publication links point to public sources.
