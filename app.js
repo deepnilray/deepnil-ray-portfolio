@@ -12,8 +12,8 @@ let W=innerWidth,H=innerHeight,lastTime=0,renderScroll=scrollY,mouseX=.55,mouseY
 const opening=$('#opening'), transition=$('#transition'),reel=$('#reel');
 const stage=$('#opening .opening-stick'), transitionStage=$('.transition-stick');
 const header=$('#header'), progress=$('#page-progress'), reelWheel=$('#reel-wheel'), reelCurrent=$('#reel-count'),reelTitle=$('#reel-title'),reelDescr=$('#reel-descr'),reelProgress=$('#reel-progress');
-const titles=['The observational sky','The structure of a pattern','Science, shared','The written record'];
-const descriptions=['What disappears between the measurements?','What does the recurrence know that its terms do not?','Who gets to take part in discovery?','Where an observation becomes an argument.'];
+const titles=['Astronomy & asteroids','Mathematics','The NoRCEL Institute','Public writing'];
+const descriptions=['Public astronomy articles and asteroid research.','Public mathematical manuscripts and references.','Science outreach and interdisciplinary education.','Selected articles and preprints.'];
 const canvas=$('#field-canvas'),ctx=canvas.getContext('2d',{alpha:true});
 const entryCanvas=$('#entry-canvas'),ectx=entryCanvas.getContext('2d',{alpha:true});
 let cw=0,ch=0,ew=0,eh=0,dpr=1;
@@ -64,9 +64,9 @@ const queryTargets={papers:'#writing',mathematics:'#patterns',astronomy:'#observ
 function interpret(raw){const t=raw.toLowerCase().trim();if(!t)return null;
  const scores={papers:0,mathematics:0,astronomy:0,outreach:0,about:0,contact:0,work:0,hello:0};
  const dictionaries={
- papers:[/publish|paper|preprint|article|journal|manuscript|writing|ssrn|oeis|citation|reference|publication/,/proof of stanley|mathar|andrica/],
+ papers:[/publish|paper|preprint|article|journal|manuscript|writing|ssrn|oeis|citation|reference|publication/,/researchgate|publication/],
  mathematics:[/math|theorem|recurrence|sequence|integer|number theory|generating function|algebra|proof|combinatoric|prime|conjecture/],
- astronomy:[/astro|space|planet|star|light curve|telescope|sky|survey|asteroid|vvv|vvvx|observation|occultat|dimming|cosmos/],
+ astronomy:[/astro|space|planet|star|light curve|telescope|sky|survey|asteroid|observation|occultat|dimming|cosmos/],
  outreach:[/norcel|science communication|outreach|institute|public engagement|talk|lecture|education/],
  about:[/who are you|your story|biograph|education|ashoka|yourself|background|personal|profile/],
  contact:[/contact|email|connect|collaborat|hire|reach|linkedin|message|work together/],
@@ -78,8 +78,8 @@ function interpret(raw){const t=raw.toLowerCase().trim();if(!t)return null;
 }
 function goTo(selector){const node=$(selector);if(node){node.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});return true}return false;}
 function navigate(raw){const target=interpret(raw);
- const messages={papers:'Opening the writing and publications archive.',mathematics:'Taking you to the mathematics work.',astronomy:'Opening the astronomical research.',outreach:'Showing science communication and NoRCEL.',about:'Taking you to the personal biography.',contact:'Opening collaboration links.',work:'Exploring the research index.',hello:'Welcome to the atlas.'};
- if(target==='unknown')return {message:'I can show research, astronomy, maths, papers, NoRCEL, biography, or contact. Try one of those.',ok:false};
+ const messages={papers:'Opening publicly listed publications.',mathematics:'Taking you to the mathematics work.',astronomy:'Opening published astronomy work.',outreach:'Showing science communication and NoRCEL.',about:'Taking you to the personal biography.',contact:'Opening collaboration links.',work:'Opening selected public work.',hello:'Welcome to Deepnil Ray's public website.'};
+ if(target==='unknown')return {message:'I can show public research, articles, NoRCEL, biography, or contact. Try one of those.',ok:false};
  goTo(queryTargets[target]);return {message:messages[target],ok:true};
 }
 function showResponse(message){queryResp.textContent=message;queryResp.classList.add('shown');}
