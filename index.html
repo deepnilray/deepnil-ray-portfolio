@@ -16,15 +16,15 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/>
 <link href="./style.css" rel="stylesheet"/>
 <script defer="" src="./app.js"></script>
-<link href="./observatory.css" rel="stylesheet"/><script defer src="./star-data.js"></script><script defer src="./observatory.js"></script></head>
+<link href="./observatory.css" rel="stylesheet"/><script defer="" src="./star-data.js"></script><script defer="" src="./observatory.js"></script><link href="./cinema.css" rel="stylesheet"/><script defer="True" src="./cinema.js"></script></head>
 <body>
-<a class="skip-link" href="#work">Skip to research</a>
+<div aria-hidden="true" class="cinema-light" id="cinema-light"><div class="cinema-glow"></div><div class="cinema-flare"></div><div class="cinema-shadow"></div></div><div aria-hidden="true" class="film-index mono" id="film-index"><span id="film-act">01 / INTRODUCTION</span><span class="film-index-line"></span><span>DEEPNIL RAY</span></div><a class="skip-link" href="#work">Skip to research</a>
 <div aria-hidden="true" class="grain"></div>
 <div aria-hidden="true" class="page-progress" id="page-progress"></div>
 <header class="site-header" id="header">
 <a aria-label="Deepnil Ray, back to top" class="signature" href="#top"><span class="signature-orbit">◌</span> DR<span class="period">.</span></a>
 <p class="header-note">DEEPNIL RAY  /  CURIOSITY &amp; SCIENCE</p>
-<nav aria-label="Main navigation" class="site-nav" id="site-nav"><a href="#observatory">Telescope</a><a href="#work">Research</a><a href="#writing">Publications</a><a href="#about">Biography</a><a href="#contact">Connect</a><button aria-controls="query" aria-expanded="false" id="search-toggle" type="button">Search</button></nav>
+<nav aria-label="Main navigation" class="site-nav" id="site-nav"><a href="#work">Research</a><a href="#writing">Publications</a><a href="#about">Biography</a><a href="#contact">Connect</a><a href="#observatory">Observatory</a><button aria-controls="query" aria-expanded="false" id="search-toggle" type="button">Search</button></nav>
 <button aria-controls="site-nav" aria-expanded="false" class="menu-toggle" id="menu-toggle" type="button"><span></span><span></span><span class="sr-only">Toggle menu</span></button>
 </header>
 <main id="top">
@@ -33,45 +33,25 @@
 <canvas aria-hidden="true" class="field-canvas" id="field-canvas"></canvas>
 <div aria-hidden="true" class="opening-grid"><span></span><span></span><span></span></div>
 <div class="opening-copy" id="opening-copy">
-<div class="opening-overline mono">ASTRONOMY · MATHEMATICS · AN ENTHUSIAST’S NOTEBOOK</div>
+<div class="opening-overline mono">DEEPNIL RAY  /  A PERSONAL EXPLORATION OF SCIENCE</div>
 <h1><span>Deepnil</span><em>Ray.</em></h1>
-<div class="opening-sub"><p>I’m enthusiastic about<br/> <em>mathematics, astronomy,</em><br/> and the questions connecting them.</p><span class="hero-coordinate mono">CURIOUS ABOUT THE SKY<br/>FASCINATED BY PROOFS<br/><a class="hero-discover" href="#observatory">EXPLORE THE TELESCOPE ↗</a></span></div>
+<div class="opening-sub"><p>I am fascinated by<br/><em>mathematics and astronomy.</em><br/>I want to understand what I see.</p><span class="hero-coordinate mono">EVERY DISCOVERY BEGINS<br/>WITH CURIOSITY<br/><a class="hero-discover" href="#transition">BEGIN EXPLORING ↓</a></span></div>
 </div>
-<div class="opening-foot mono"><span>AN INVITATION TO EXPLORE</span><span class="opening-foot-middle">THE SKY ISN’T STATIC</span><span>SCROLL TO LOOK CLOSER <span class="arrow-down">↓</span></span></div>
+<div class="opening-foot mono"><span>ACT I / CURIOSITY</span><span class="opening-foot-middle">THE SKY ISN’T STATIC</span><span>SCROLL TO LOOK CLOSER <span class="arrow-down">SCROLL TO EXPLORE ↓</span></span></div>
 <div class="opening-flash" id="opening-flash"></div>
-</div></section><section aria-label="Interactive star finder" class="observatory" id="observatory">
-<div class="observatory-topline mono"><span>01 / THE OBSERVATORY</span><span>AN INTERACTIVE SKY ATLAS · J2000</span></div>
-<div class="obs-intro"><div><span class="obs-kicker mono"><span class="status-dot"></span> POINT YOUR CURIOSITY SOMEWHERE</span><h2>A telescope<br/>for <em>the curious.</em></h2><p>There is something extraordinary about knowing a star by name, and then actually finding it in the sky. Search, explore, and look a little closer.</p></div>
-<p class="obs-accuracy">An interactive star chart built from published celestial coordinates. <strong>Not a live telescope or a live sky image.</strong> Positions are referenced to epoch J2000; observing angles are approximate.</p></div>
-<div class="obs-system">
-<div class="obs-sidebar">
-<label class="obs-label mono" for="star-search">FIND A STAR</label>
-<form class="star-search-form" id="star-search-form" role="search"><input aria-label="Search named stars" autocomplete="off" id="star-search" list="star-suggestions" placeholder="Sirius, Vega, Polaris…" type="search"/><datalist id="star-suggestions"></datalist><button aria-label="Find star" type="submit">↗</button></form>
-<p aria-live="polite" class="star-feedback" id="star-feedback" role="status">Choose a star or drag the telescope to explore.</p>
-<div class="obs-target"><div class="obs-target-head mono">IN THE VIEWFINDER <span id="obs-target-badge">TARGET 01</span></div><h3 id="star-name">Betelgeuse</h3><p id="star-subtitle">Orion / Red supergiant</p><div class="obs-data"><div><span>RIGHT ASCENSION</span><strong id="star-ra">05h 55m</strong></div><div><span>DECLINATION</span><strong id="star-dec">+07.4°</strong></div><div><span>APP. MAGNITUDE</span><strong id="star-mag">0.50</strong></div><div><span>SPECTRAL CLASS</span><strong id="star-spectral">M</strong></div></div></div>
-<div class="obs-favorites"><span class="mono">SOME PLACES TO START</span><div class="obs-chips"><button data-target="Sirius" type="button">Sirius ↗</button><button data-target="Vega" type="button">Vega ↗</button><button data-target="Betelgeuse" type="button">Betelgeuse ↗</button><button data-target="Polaris" type="button">Polaris ↗</button></div></div>
-<details class="obs-location"><summary>Observe from a location <span>+</span></summary><p>For a rough current altitude and bearing, enter observing coordinates. They stay in your browser.</p><div class="obs-location-grid"><label>Latitude <input id="obs-lat" max="90" min="-90" placeholder="−90 to +90" step="0.01" type="number"/></label><label>Longitude <input id="obs-lon" max="180" min="-180" placeholder="−180 to +180" step="0.01" type="number"/></label></div><button id="obs-use-location" type="button">Use my location</button><p aria-live="polite" id="obs-altaz">No observing location selected.</p></details>
-</div>
-<div class="obs-stage" id="obs-stage">
-<div class="obs-stage-top mono"><span><i class="obs-live"></i> STAR ATLAS / EQUATORIAL COORDINATES</span><span id="obs-fov-label">FIELD 54°</span></div>
-<div class="obs-lens" id="obs-lens"><canvas aria-label="Interactive star chart. Drag to pan, scroll to zoom. Use the nearby star search for keyboard access." id="star-canvas"></canvas><div aria-hidden="true" class="lens-reticle"><span></span></div><span class="lens-mark lens-mark-top">N</span><span class="lens-mark lens-mark-left">W</span><span class="lens-mark lens-mark-right">E</span><div class="lens-title mono" id="lens-title">ORION / 05H 55M</div></div>
-<div class="obs-toolbar"><span class="mono" id="obs-count">CURATED CELESTIAL CATALOG</span><div class="obs-tool-buttons"><button aria-pressed="true" id="obs-label-toggle" type="button">LABELS <span>ON</span></button><button id="obs-reset" type="button">RESET</button><button aria-label="Zoom out" id="obs-zoom-out" type="button">−</button><button aria-label="Zoom in" id="obs-zoom-in" type="button">+</button></div></div>
-</div>
-</div>
-<div class="observatory-foot mono"><span>DRAG TO PAN · SCROLL OR +/- TO ZOOM · SELECT A STAR</span><span><a href="https://github.com/aduboisforge/Bright-Star-Catalog-JSON" target="_blank" rel="noopener noreferrer" class="sky-credit">STAR DATA / BRIGHT STAR CATALOG ↗</a></span></div>
-</section>
+</div></section>
 <section aria-label="The sky" class="transition" id="transition"><div class="transition-stick">
 <div class="transition-tone" id="transition-tone"></div>
 <div class="transition-image" id="transition-image"><img alt="An illustrative purple cloud of interstellar dust in a dark star field" fetchpriority="high" src="./assets/cosmos.jpg"/><div class="transition-img-shade"></div></div>
-<div aria-hidden="true" class="transition-word" id="transition-word">STAY <i>CURIOUS.</i></div>
-<div class="transition-question" id="transition-question"><span class="mono">01 / ASTRONOMY</span><h2>Look longer.<br/>Ask <em>more.</em></h2><p>Every point of light is a reason to ask another question.</p></div>
+<div aria-hidden="true" class="transition-word" id="transition-word">GO <i>FURTHER.</i></div>
+<div class="transition-question" id="transition-question"><span class="mono">ACT II  /  THE UNIVERSE</span><h2>A universe<br/>to <em>explore.</em></h2><p>The closer we look, the more questions we discover.</p></div>
 <div class="transition-caption mono"><span>ILLUSTRATIVE ASTRONOMICAL ARTWORK</span><span>NOT RESEARCH DATA</span></div>
 <div class="transition-wipe" id="transition-wipe"></div>
 </div></section>
-<section class="statement" id="work"><div class="statement-head mono"><span>02 / THE INTERESTS</span><span>ASTRONOMY · MATHEMATICS · OUTREACH</span></div>
+<section aria-label="Research introduction" class="statement" id="work"><div class="statement-head mono"><span>02 / THE INTERESTS</span><span>ASTRONOMY · MATHEMATICS · OUTREACH</span></div>
 <div class="statement-body"><p class="statement-small">Curiosity comes first. The work comes later.</p><h2>The questions that interest me span <em>mathematics, astronomy, and science.</em></h2><p class="statement-end">What follows is a selection of publicly documented work and activities, not a list of every idea I have explored.</p></div>
 </section>
-<section aria-label="Explore the research" class="work-reel" id="reel"><div class="reel-stick">
+<section aria-label="Research cinematic index" class="work-reel" id="reel"><div class="reel-stick">
 <div class="reel-intro"><span class="mono">RESEARCH  /  FOUR AREAS</span><p>Selected<br/><em>work.</em></p><span class="mono reel-hint">SCROLL OR SELECT A SUBJECT</span></div>
 <div aria-live="off" class="reel-scene" id="reel-scene"><div class="reel-wheel" id="reel-wheel">
 <a aria-label="Astronomy" class="reel-card" data-card="0" href="#observations"><img alt="Abstract dark sky with a distant glow" src="./assets/horizon.jpg"/><span>FIELD / 01</span></a>
@@ -91,9 +71,37 @@
 <section aria-label="A thought" class="ink-break"><div aria-hidden="true" class="ink-orbit"></div><p>THE NORCEL INSTITUTE</p><strong><em>Science communication &amp; outreach.</em></strong><span class="mono">SELECTED PUBLIC WORK</span></section>
 <section class="papers" id="writing"><div class="papers-top mono"><span>03 / PUBLICATIONS</span><span>SELECTED PUBLIC RECORDS</span></div><div class="papers-layout"><div class="papers-title"><h2>Selected<br/><em>writing.</em></h2><p>A selection of publicly accessible work. Preprints are distinguished from journal publications; paper titles are reproduced as published and do not independently establish their claims.</p><span class="papers-count mono">06 SELECTED PUBLICATIONS</span></div><div class="papers-list"><a aria-label="Orbital and Physical Characterization of Main-Belt Asteroid 2022 UO26 — JOURNAL SHORT COMMUNICATION · 2024" href="https://www.opastpublishers.com/open-access-articles/orbital-and-physical-characterization-of-mainbelt-asteroid-2022-uo26-8184.html" rel="noopener noreferrer" target="_blank"><span class="paper-id">01</span><span class="paper-name">Orbital and Physical Characterization of Main-Belt Asteroid 2022 UO26<small>JOURNAL SHORT COMMUNICATION · 2024</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="Extremophiles and Their Implications for Astrobiology — SSRN PREPRINT · 2024" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4982884" rel="noopener noreferrer" target="_blank"><span class="paper-id">02</span><span class="paper-name">Extremophiles and Their Implications for Astrobiology<small>SSRN PREPRINT · 2024</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="The Formation of Stars: A Comprehensive Review of Processes and Challenges — SSRN PREPRINT · 2025" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5169077" rel="noopener noreferrer" target="_blank"><span class="paper-id">03</span><span class="paper-name">The Formation of Stars: A Comprehensive Review of Processes and Challenges<small>SSRN PREPRINT · 2025</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="Empowerment Through Astroscience: NoRCEL Institute’s Educational Journey Across the Global South — SSRN PREPRINT · 2026" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6449178" rel="noopener noreferrer" target="_blank"><span class="paper-id">04</span><span class="paper-name">Empowerment Through Astroscience: NoRCEL Institute’s Educational Journey Across the Global South<small>SSRN PREPRINT · 2026</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="A Short Proof of Mathar’s 2022 Recurrence Conjecture for OEIS A177265 — SSRN PREPRINT · 2026" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7176239" rel="noopener noreferrer" target="_blank"><span class="paper-id">05</span><span class="paper-name">A Short Proof of Mathar’s 2022 Recurrence Conjecture for OEIS A177265<small>SSRN PREPRINT · 2026</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="A Critical Analysis of the X-tractor Pipeline — SSRN PREPRINT · 2026" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6019497" rel="noopener noreferrer" target="_blank"><span class="paper-id">06</span><span class="paper-name">A Critical Analysis of the X-tractor Pipeline<small>SSRN PREPRINT · 2026</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a></div></div></section>
 <section class="about" id="about"><span class="mono">04 / BIOGRAPHY</span><div class="about-columns"><h2>Deepnil<br/><em>Ray.</em></h2><div><p>Deepnil Ray is a student at Ashoka University and Deputy CEO of The NoRCEL Institute. His public research and writing span astronomy, astrobiology, mathematics and science communication.</p><p>His institutional profile and publication records are linked here so that appointments and research can be checked against their original sources.</p><a href="https://www.researchgate.net/profile/Deepnil-Ray" rel="noopener noreferrer" target="_blank">ResearchGate profile ↗</a></div></div></section>
-<section class="end" id="contact"><div class="end-top mono"><span>05 / CONTACT &amp; PROFILES</span><span>OFFICIAL PUBLIC LINKS</span></div><h2>Professional<br/><em>contacts.</em></h2><p>For institutional correspondence, research enquiries and professional connections, use the public profiles below.</p><div class="end-links"><a href="https://in.linkedin.com/in/deepnil-ray-a6a52a202" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a><a href="https://www.researchgate.net/profile/Deepnil-Ray" rel="noopener noreferrer" target="_blank">ResearchGate ↗</a><a href="https://norcel.net/" rel="noopener noreferrer" target="_blank">NoRCEL ↗</a><a href="#top">Start again ↑</a></div><div aria-hidden="true" class="end-signature">DR<span>.</span></div></section>
+<section class="end" id="contact"><div class="end-top mono"><span>05 / CONTACT &amp; PROFILES</span><span>OFFICIAL PUBLIC LINKS</span></div><h2>Science is a<br/><em>shared pursuit.</em></h2><p>For institutional correspondence, research enquiries and professional connections, use the public profiles below.</p><div class="end-links"><a href="https://in.linkedin.com/in/deepnil-ray-a6a52a202" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a><a href="https://www.researchgate.net/profile/Deepnil-Ray" rel="noopener noreferrer" target="_blank">ResearchGate ↗</a><a href="https://norcel.net/" rel="noopener noreferrer" target="_blank">NoRCEL ↗</a><a href="#observatory">Enter the observatory ↗</a><a href="#top">Back to the beginning ↑</a></div><div aria-hidden="true" class="end-signature">DR<span>.</span></div></section><section aria-label="Entering the observatory" class="nightfall" id="nightfall">
+<div class="nightfall-sticky">
+<div aria-hidden="true" class="nightfall-image"><img alt="" src="./assets/cosmos.jpg"/></div>
+<div aria-hidden="true" class="nightfall-halo"></div>
+<div aria-hidden="true" class="nightfall-stars"></div>
+<div class="nightfall-copy"><span class="mono">FINAL ACT   /   THE NIGHT SKY</span><h2>Now, <em>look up.</em></h2><p>The questions brought us here. The stars are yours to explore.</p><a class="nightfall-enter" href="#observatory">OPEN THE OBSERVATORY <span aria-hidden="true">↗</span></a></div>
+<div class="nightfall-credit mono">AN INTERACTIVE STAR ATLAS · BASED ON CATALOGUED POSITIONS</div>
+</div>
+</section><section aria-label="The final interactive observatory" class="observatory" id="observatory">
+<div class="observatory-topline mono"><span>FINAL ACT / INTERACTIVE OBSERVATORY</span><span>AN INTERACTIVE SKY ATLAS · J2000</span></div>
+<div class="obs-intro"><div><span class="obs-kicker mono">A REAL STAR MAP, NOT A DECORATION</span><h2>Your window<br/>to <em>the stars.</em></h2><p>Find a star. Move the telescope. Follow the coordinates. Astronomy becomes more interesting when you can explore it yourself.</p></div>
+<p class="obs-accuracy">Positions use a compact J2000 star catalogue. <strong>This is an interactive sky atlas, not live telescope imagery.</strong></p></div>
+<div class="obs-system">
+<div class="obs-sidebar">
+<label class="obs-label mono" for="star-search">FIND A STAR</label>
+<form class="star-search-form" id="star-search-form" role="search"><input aria-label="Search named stars" autocomplete="off" id="star-search" list="star-suggestions" placeholder="Sirius, Vega, Polaris…" type="search"/><datalist id="star-suggestions"></datalist><button aria-label="Find star" type="submit">↗</button></form>
+<p aria-live="polite" class="star-feedback" id="star-feedback" role="status">Choose a star or drag the telescope to explore.</p>
+<div class="obs-target"><div class="obs-target-head mono">IN THE VIEWFINDER <span id="obs-target-badge">TARGET 01</span></div><h3 id="star-name">Betelgeuse</h3><p id="star-subtitle">Orion / Red supergiant</p><div class="obs-data"><div><span>RIGHT ASCENSION</span><strong id="star-ra">05h 55m</strong></div><div><span>DECLINATION</span><strong id="star-dec">+07.4°</strong></div><div><span>APP. MAGNITUDE</span><strong id="star-mag">0.50</strong></div><div><span>SPECTRAL CLASS</span><strong id="star-spectral">M</strong></div></div></div>
+<div class="obs-favorites"><span class="mono">SOME PLACES TO START</span><div class="obs-chips"><button data-target="Sirius" type="button">Sirius ↗</button><button data-target="Vega" type="button">Vega ↗</button><button data-target="Betelgeuse" type="button">Betelgeuse ↗</button><button data-target="Polaris" type="button">Polaris ↗</button></div></div>
+<details class="obs-location"><summary>Observe from a location <span>+</span></summary><p>For a rough current altitude and bearing, enter observing coordinates. They stay in your browser.</p><div class="obs-location-grid"><label>Latitude <input id="obs-lat" max="90" min="-90" placeholder="−90 to +90" step="0.01" type="number"/></label><label>Longitude <input id="obs-lon" max="180" min="-180" placeholder="−180 to +180" step="0.01" type="number"/></label></div><button id="obs-use-location" type="button">Use my location</button><p aria-live="polite" id="obs-altaz">No observing location selected.</p></details>
+</div>
+<div class="obs-stage" id="obs-stage">
+<div class="obs-stage-top mono"><span><i class="obs-live"></i> STAR ATLAS / EQUATORIAL COORDINATES</span><span id="obs-fov-label">FIELD 54°</span></div>
+<div class="obs-lens" id="obs-lens"><canvas aria-label="Interactive star chart. Drag to pan, scroll to zoom. Use the nearby star search for keyboard access." id="star-canvas"></canvas><div aria-hidden="true" class="lens-reticle"><span></span></div><span class="lens-mark lens-mark-top">N</span><span class="lens-mark lens-mark-left">W</span><span class="lens-mark lens-mark-right">E</span><div class="lens-title mono" id="lens-title">ORION / 05H 55M</div></div>
+<div class="obs-toolbar"><span class="mono" id="obs-count">CURATED CELESTIAL CATALOG</span><div class="obs-tool-buttons"><button aria-pressed="true" id="obs-label-toggle" type="button">LABELS <span>ON</span></button><button id="obs-reset" type="button">RESET</button><button aria-label="Zoom out" id="obs-zoom-out" type="button">−</button><button aria-label="Zoom in" id="obs-zoom-in" type="button">+</button></div></div>
+</div>
+</div>
+<div class="observatory-foot mono"><span>DRAG TO PAN · SCROLL OR +/- TO ZOOM · SELECT A STAR</span><span><a class="sky-credit" href="https://github.com/aduboisforge/Bright-Star-Catalog-JSON" rel="noopener noreferrer" target="_blank">STAR DATA / BRIGHT STAR CATALOG ↗</a></span></div>
+</section>
 </main>
-<footer class="footer mono"><span>DEEPNIL RAY © 2026</span><span>RESEARCH &amp; SCIENCE COMMUNICATION</span><a href="#top">BACK TO TOP ↑</a></footer>
+<footer class="footer mono"><span>DEEPNIL RAY © 2026</span><span>CURIOSITY · RESEARCH · OBSERVATION</span><a href="#top">BACK TO TOP ↑</a></footer>
 <div aria-hidden="true" class="query" id="query" inert=""><div aria-hidden="true" class="query-head mono">SEARCH SECTIONS</div><form id="query-form"><label class="sr-only" for="query-input">Ask the website</label><input aria-label="Search site sections" autocomplete="off" id="query-input" maxlength="180" placeholder="Search publications or research…"/><button aria-label="Navigate to matching section" type="submit">↗</button></form><div aria-live="polite" class="query-response" id="query-response" role="status"></div></div>
 <div aria-hidden="true" class="cursor" id="cursor"><span>VIEW</span></div>
 </body>

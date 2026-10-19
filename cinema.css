@@ -1,0 +1,199 @@
+/* CINEMA / An editorial astronomy experience. Scroll is the camera; light is continuous. */
+:root{--cinema-x:66%;--cinema-y:39%;--cinema-warm:0;--cinema-light:.42;--cinema-phase:0;--light-angle:0deg}
+html{scrollbar-color:#59646c #0a1018}
+body{background:#080f18}
+main{isolation:isolate}
+body:before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 84% 80% at 85% 20%,rgba(92,119,132,.075),transparent 70%)}
+.cinema-light{position:fixed;inset:0;z-index:9;pointer-events:none;overflow:hidden;opacity:1;isolation:isolate}
+.cinema-glow{position:absolute;inset:-22%;background:radial-gradient(ellipse 26% 36% at var(--cinema-x) var(--cinema-y),rgba(159,205,217,.25),transparent 74%),radial-gradient(ellipse 55% 45% at 8% 90%,rgba(118,111,166,.11),transparent 77%);mix-blend-mode:screen;opacity:var(--cinema-light);transform:translateZ(0);will-change:opacity}
+.cinema-flare{position:absolute;inset:0;background:linear-gradient(calc(130deg + var(--light-angle)),transparent 28%,rgba(213,231,220,.035) 48%,transparent 72%);opacity:calc(var(--cinema-light)*.9);mix-blend-mode:screen}
+.cinema-shadow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 52%,transparent 28%,rgba(0,0,0,.11) 72%,rgba(0,0,0,.4));opacity:calc(1 - var(--cinema-warm)*.67)}
+.film-index{position:fixed;z-index:44;left:clamp(20px,4.8vw,78px);bottom:clamp(20px,4vh,38px);color:#d3dcd4;display:flex;align-items:center;gap:18px;text-shadow:0 2px 22px rgba(0,0,0,.5);font-size:11px!important;letter-spacing:.095em!important;pointer-events:none;transition:color .35s,opacity .35s}
+.film-index-line{height:1px;width:clamp(28px,4vw,72px);background:currentColor;opacity:.45;transform-origin:left;transform:scaleX(var(--film-line,1))}
+.film-index.paper{color:#3e4a46}
+.site-header,.site-header.light{color:#f5f3ed;background:linear-gradient(to bottom,rgba(5,12,21,.80),rgba(5,12,21,.17) 67%,transparent);transition:color .35s,background .35s,padding .35s;backdrop-filter:none}
+.site-header.paper-head,.site-header.paper-head.light{color:#1e2a28;background:linear-gradient(to bottom,rgba(242,237,229,.96),rgba(242,237,229,0))}
+.site-header.paper-head .signature-orbit{color:#4e756c}
+.site-header .site-nav a,.site-header .site-nav button{font-weight:500}
+.header-note{font-size:11px;letter-spacing:.09em}
+/* Act one: the generated sphere is lit like an astronomical object, not a UI icon */
+.opening{height:200vh;background:#050e18}
+.opening-surface{background:radial-gradient(ellipse 36% 49% at 70% 45%,#24384a 0%,#111c2b 43%,#07111b 80%),radial-gradient(ellipse 60% 90% at 10% 90%,#15232d,#060c14);filter:saturate(.8)}
+.opening-stick:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(0deg,rgba(5,10,17,.48),transparent 50%),radial-gradient(ellipse at 65% 36%,transparent 8%,rgba(0,0,0,.23) 72%)}
+.opening-copy{z-index:3}
+.opening-copy h1{font-size:clamp(110px,14.5vw,260px);letter-spacing:-.085em;line-height:.76;text-shadow:0 20px 70px rgba(0,0,0,.17)}
+.opening-sub p{font-size:clamp(21px,2vw,37px);line-height:1.28;max-width:710px}
+.hero-coordinate{font-size:clamp(12px,.93vw,15px)!important;line-height:1.8!important;color:#c3cfcf!important;letter-spacing:.04em}
+.hero-discover{display:inline-block;margin-top:20px;border-bottom:1px solid #d4dfce;padding-bottom:9px}
+.opening-overline{color:#e3ebdf;font-size:clamp(11px,.95vw,14px)!important}
+.opening-foot{z-index:3}
+/* Entire-screen camera image; no hard clipping animation */
+.transition{height:285vh;background:#060d15}
+.transition-tone{background:radial-gradient(ellipse at 51% 47%,#263448,#071018 76%)}
+.transition-image{transform:translate3d(0,0,0) scale(var(--imageScale,.46));box-shadow:0 0 0 1px rgba(240,247,238,.1),0 0 200px 40px rgba(123,112,148,.17)}
+.transition-image img{filter:saturate(.87) contrast(1.2)}
+.transition-word{font-size:clamp(92px,18vw,280px)!important;letter-spacing:-.09em!important;color:#f7f0e5!important;text-shadow:0 6px 45px rgba(0,0,0,.5)}
+.transition-question h2{font-size:clamp(76px,10.5vw,172px)!important}
+.transition-question p{font-size:clamp(17px,1.65vw,26px)!important;max-width:420px}
+/* After the sky: no sudden white webpage; move into a dark laboratory of ideas. */
+.statement{min-height:105svh;padding:clamp(110px,17vh,180px) clamp(26px,6vw,115px);background:radial-gradient(ellipse 65% 72% at 87% 45%,rgba(74,101,112,.34),transparent 74%),linear-gradient(135deg,#111b26,#070e17 74%);color:#f0f3ec;position:relative;overflow:hidden}
+.statement:before{content:"";position:absolute;right:-12vw;top:-30vh;width:65vw;aspect-ratio:1;border-radius:50%;border:1px solid rgba(211,231,232,.12);box-shadow:0 0 0 8vw rgba(255,255,255,.009),0 0 0 18vw rgba(255,255,255,.005);pointer-events:none}
+.statement-head{color:#b6ccc7;border-color:rgba(235,245,246,.22)}
+.statement-body{position:relative;z-index:1}
+.statement-small,.statement-end{color:#b9c9c5}
+.statement h2{font-size:clamp(62px,8.1vw,147px);text-wrap:balance}
+.statement h2 em{color:#bed6d7}
+.statement-end{font-size:clamp(17px,1.3vw,22px)}
+.work-reel{height:330vh;background:#07101b}
+.reel-stick:before{background:radial-gradient(ellipse at 74% 47%,#35444e 0%,#0e1924 50%,#060e17 85%)}
+.reel-stick:after{content:"";pointer-events:none;position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(4,10,17,.5),transparent 56%),linear-gradient(to top,rgba(3,7,15,.6),transparent 38%)}
+.reel-intro,.reel-current,.reel-index,.reel-progress{z-index:4}
+.reel-intro p{font-size:clamp(82px,11vw,180px)}
+.reel-card{box-shadow:0 28px 90px rgba(0,0,0,.6),0 0 45px rgba(152,186,190,.11)}
+/* Each research subject becomes a composed full-screen film shot. */
+.chapters{background:#060e17}
+.chapter,.chapter-invert{position:relative;display:block;height:165vh;min-height:unset;background:#080e17;color:#f2f4eb;isolation:isolate}
+.chapter-visual{position:sticky;top:0;width:100%;height:100vh;height:100svh;min-height:unset;overflow:hidden}
+.chapter-visual img{width:100%;height:100%;filter:contrast(1.1) saturate(.82) brightness(.69);object-position:center;transform:scale(1.17);transition:none}
+.chapter-visual:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(5,11,19,.86) 6%,rgba(5,11,19,.67) 40%,rgba(5,11,19,.05) 94%),linear-gradient(to top,rgba(5,12,19,.55),transparent 43%,rgba(5,12,19,.18)),radial-gradient(ellipse at 70% 46%,transparent 10%,rgba(0,0,0,.32) 85%)}
+.chapter-invert .chapter-visual:after{background:linear-gradient(270deg,rgba(6,11,19,.87) 5%,rgba(5,11,19,.65) 43%,rgba(5,11,19,.09) 94%),linear-gradient(to top,rgba(5,12,19,.55),transparent 43%,rgba(5,12,19,.18))}
+.chapter-copy,.chapter-invert .chapter-copy{position:absolute;z-index:3;left:clamp(25px,6vw,120px);right:auto;top:0;width:min(730px,55vw);height:100vh;height:100svh;min-height:unset;padding:120px 0 90px;background:none;display:flex;justify-content:center;pointer-events:none;opacity:var(--shot-opacity,1);transform:translate3d(0,var(--shot-shift,0px),0)}
+.chapter-invert .chapter-copy{left:auto;right:clamp(25px,6vw,120px)}
+.chapter-copy>*{pointer-events:auto}
+.chapter-copy .mono,.chapter-copy p{color:#d2dbd8}
+.chapter-copy h2{font-size:clamp(84px,8.3vw,149px);margin:26px 0;line-height:.83;color:#fff}
+.chapter-copy h2 em{color:#c9e6da}
+.chapter-copy p{font-size:clamp(19px,1.4vw,25px);line-height:1.48;max-width:490px;text-shadow:0 2px 20px #0b1521}
+.chapter-copy a{color:#fff;border-bottom:1px solid rgba(255,255,255,.72);font-size:clamp(13px,1vw,17px);padding-bottom:10px;align-self:flex-start}
+.chapter-stamp{z-index:3;color:#f1f5ed;font-size:12px}
+.ink-break{min-height:100svh;background:radial-gradient(ellipse at 50% 48%,#21303b,#0a111b 69%);color:#f2f3ed;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden}
+.ink-break p{color:#c3ceca;font-size:clamp(12px,1vw,15px)}
+.ink-break strong{font-size:clamp(55px,8vw,130px);max-width:1200px;text-wrap:balance;text-align:center}
+.ink-break .mono{color:#c5d1c6}
+/* The warm archive is a deliberate film-light cue, not a flat white webpage. */
+.papers{min-height:115svh;background:radial-gradient(ellipse 63% 72% at calc(68% - var(--archive-x,0px)) 28%,#fff8ea 0%,#e9dfcf 56%,#bfb5a8 120%);color:#1a2228;position:relative;overflow:hidden}
+.papers:before{content:"";position:absolute;left:40%;top:-25%;width:50vw;height:140%;transform:rotate(-17deg);pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);opacity:var(--archive-ray,.2)}
+.papers-top{color:#48534e}
+.papers-title h2{font-size:clamp(83px,9vw,165px)}
+.papers-title h2 em{color:#8c4939}
+.papers-list>a{transition:padding-left .35s cubic-bezier(.2,.7,.2,1),color .35s;scroll-margin-top:130px}
+.about{min-height:105svh;background:radial-gradient(ellipse at 80% 47%,#28313c,#111a24 62%,#090f17);color:#f1f1ec}
+.about>.mono{color:#aebfc0}.about h2 em{color:#c5ddd6}.about a{color:#d7e2d9}.about-columns p{color:#e0e8e2}
+.end{min-height:100svh;background:radial-gradient(ellipse at 78% 72%,rgba(59,85,103,.45),transparent 62%),#070f19;padding-bottom:130px}
+.end h2{font-size:clamp(90px,11vw,205px)}
+.end h2 em{color:#d6e5db}
+.end>p{color:#e0e5e0}
+.end-links a{font-size:15px}
+/* Nightfall: the last scroll isn't a page change, it is entering a dome. */
+.nightfall{position:relative;height:285vh;background:#050a12;color:#f7f6ef}
+.nightfall-sticky{position:sticky;top:0;width:100%;height:100vh;height:100svh;overflow:hidden;isolation:isolate}
+.nightfall-image{position:absolute;inset:-14%;transform:translate3d(0,calc(var(--night-p,0)*-6%),0) scale(calc(1.25 - var(--night-p,0)*.12));will-change:transform}
+.nightfall-image img{width:100%;height:100%;object-fit:cover;filter:contrast(1.4) saturate(.65) brightness(.42);opacity:calc(.12 + var(--night-p,0)*.53)}
+.nightfall-sticky:before{position:absolute;inset:0;z-index:2;content:"";pointer-events:none;background:radial-gradient(ellipse at 50% 49%,transparent 8%,rgba(1,4,11,.42) 59%,rgba(1,4,11,.95) 100%),linear-gradient(135deg,rgba(4,11,22,.7),transparent 72%)}
+.nightfall-halo{position:absolute;z-index:2;width:min(85vw,850px);height:min(85vw,850px);left:50%;top:50%;transform:translate(-50%,-50%) scale(calc(.34 + var(--night-p,0)*1.12));border-radius:50%;border:1px solid rgba(195,223,234,.22);box-shadow:0 0 0 17px rgba(170,215,244,.018),0 0 0 40px rgba(145,204,231,.013),inset 0 0 70px rgba(147,197,217,.045),0 0 120px rgba(124,181,205,.08);pointer-events:none;will-change:transform}
+.nightfall-halo:before,.nightfall-halo:after{content:"";position:absolute;inset:-9%;border-radius:50%;border:1px solid rgba(219,239,231,.06)}
+.nightfall-halo:after{inset:23%;border-color:rgba(219,239,231,.17)}
+.nightfall-stars{position:absolute;inset:0;opacity:var(--night-p,0);background-image:radial-gradient(1px 1px at 7% 18%,white 99%,transparent),radial-gradient(2px 2px at 39% 26%,#bfddd2 99%,transparent),radial-gradient(1px 1px at 79% 24%,white 99%,transparent),radial-gradient(1px 1px at 26% 69%,#d7dfee 99%,transparent),radial-gradient(2px 2px at 91% 80%,white 99%,transparent),radial-gradient(1px 1px at 65% 74%,#e2d9c3 99%,transparent);background-size:210px 230px,350px 310px,270px 280px,400px 290px,500px 400px,220px 260px;transform:translate3d(0,calc(var(--night-p,0)*-50px),0)}
+.nightfall-copy{position:absolute;z-index:3;top:50%;left:50%;width:min(1200px,90vw);text-align:center;transform:translate(-50%,calc(-50% + (1 - var(--night-p,0))*50px));opacity:var(--night-copy,.1);will-change:opacity,transform}
+.nightfall-copy .mono{color:#b3c8ca;letter-spacing:.2em;font-size:clamp(12px,.95vw,15px)!important}
+.nightfall-copy h2{font:400 clamp(110px,15vw,260px)/.8 var(--serif);letter-spacing:-.065em;margin:36px auto 30px;text-shadow:0 7px 60px rgba(0,0,0,.4)}
+.nightfall-copy h2 em{font-weight:400;color:#c4e2df}
+.nightfall-copy p{font-size:clamp(19px,1.7vw,30px);color:#d0dedb;max-width:680px;margin:0 auto 40px}
+.nightfall-enter{display:inline-flex;gap:28px;align-items:center;border:1px solid rgba(222,240,234,.4);background:rgba(12,30,44,.5);backdrop-filter:blur(12px);padding:17px 23px;color:white;font:500 13px var(--mono);letter-spacing:.05em;transition:background .3s,transform .3s}
+.nightfall-enter:hover,.nightfall-enter:focus-visible{background:rgba(53,95,111,.48);transform:translateY(-3px)}
+.nightfall-credit{position:absolute;z-index:3;bottom:clamp(40px,8vh,100px);width:100%;text-align:center;color:#99aaac;letter-spacing:.1em;font-size:11px!important}
+/* The interactive instrument is the whole destination, not a small widget in a long page. */
+.observatory{background:#030a12;min-height:100vh;padding-top:clamp(120px,12vh,170px);padding-bottom:clamp(90px,9vh,145px)}
+.observatory:before{background:radial-gradient(ellipse 52% 63% at 80% 48%,rgba(61,120,145,.32),transparent 80%),radial-gradient(ellipse 100% 95% at 48% 67%,#101c2c,#040a12 70%)}
+.obs-intro{margin:clamp(24px,4vh,50px) 0 65px}
+.obs-intro h2{font-size:clamp(77px,8.8vw,176px);letter-spacing:-.065em;line-height:.85}
+.obs-intro h2 em{color:#bbd9d9}
+.obs-intro>div>p{font-size:clamp(18px,1.3vw,24px);max-width:660px}
+.obs-stage{border-left-color:rgba(208,240,232,.17)}
+.obs-lens{width:min(100%,min(83vh,870px));box-shadow:0 0 0 1px rgba(216,233,239,.27),0 0 0 12px rgba(218,227,222,.015),0 0 0 13px rgba(201,225,231,.13),0 0 190px 32px rgba(78,145,178,.18),0 20px 130px rgba(0,0,0,.6)}
+.obs-sidebar{border:1px solid rgba(210,237,235,.19);padding:clamp(22px,2.2vw,40px);border-radius:22px;background:linear-gradient(125deg,rgba(18,34,49,.63),rgba(6,16,26,.26));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);max-width:550px}
+.obs-favorites{padding-top:23px}
+.obs-location summary{color:#e1e8e6}
+.observatory-topline,.observatory-foot{position:relative;z-index:3}
+/* Give the last frame a footer that sits inside the dark observatory world. */
+.footer{background:#030a12;position:relative;z-index:2;color:#d1dbd4;border-top:1px solid rgba(212,232,231,.17)}
+/* Intro and sheet interactions must never obscure the telescope. */
+.observatory .obs-lens:focus-visible,.observatory a:focus-visible,.observatory button:focus-visible{outline:2px solid #c6e4e3;outline-offset:5px}
+@media(max-width:960px){
+.film-index{bottom:18px;left:20px;font-size:10px!important}
+.chapter-copy,.chapter-invert .chapter-copy{left:26px;right:26px;width:calc(100% - 52px);height:100svh;padding:95px 0 110px}
+.chapter-visual:after,.chapter-invert .chapter-visual:after{background:linear-gradient(to top,rgba(4,10,17,.92) 5%,rgba(4,10,17,.36) 70%,rgba(4,10,17,.25)),linear-gradient(90deg,rgba(0,0,0,.35),transparent)}
+.chapter-copy{justify-content:flex-end}
+.chapter-copy h2{font-size:clamp(72px,11vw,130px)}
+.papers{padding-top:110px}
+.obs-sidebar{padding:26px;max-width:unset}
+}
+@media(max-width:730px){
+.film-index{left:20px;bottom:14px;gap:12px;font-size:9px!important}
+.film-index span:last-child{display:none}
+.cinema-light{z-index:7}
+.opening{height:180vh}
+.opening-copy h1{font-size:clamp(84px,19vw,150px)}
+.opening-sub p{font-size:clamp(19px,5vw,28px);max-width:94%}
+.opening-overline{max-width:300px}
+.hero-coordinate{font-size:11px!important}
+.transition{height:255vh}
+.transition-word{font-size:clamp(85px,15vw,130px)!important}
+.transition-question h2{font-size:clamp(68px,13vw,105px)!important}
+.statement{padding:120px 25px;min-height:100svh}
+.statement h2{font-size:clamp(64px,10vw,102px)}
+.statement-body{display:block}
+.statement-small{max-width:310px;margin-bottom:24px}
+.statement-end{margin:55px 0 0}
+.work-reel{height:290vh}
+.reel-intro p{font-size:clamp(62px,13vw,107px)}
+.chapter{height:142vh}
+.chapter-copy h2{font-size:clamp(69px,14vw,106px)}
+.chapter-copy p{font-size:17px;max-width:420px}
+.chapter-stamp{bottom:20px;left:25px;opacity:.8}
+.nightfall{height:240vh}
+.nightfall-copy h2{font-size:clamp(100px,18vw,160px)}
+.nightfall-copy p{font-size:18px}
+.nightfall-credit{font-size:10px!important;max-width:90%;left:5%}
+.observatory{padding-top:95px;padding-bottom:85px}
+.obs-intro{margin:40px 0 32px}
+.obs-intro h2{font-size:clamp(74px,13vw,115px)}
+.obs-sidebar{padding:22px;border-radius:15px;backdrop-filter:none}
+.obs-stage{order:0}.obs-sidebar{order:1}
+.about{padding-top:125px}.about h2{font-size:clamp(78px,14vw,125px)}
+.end h2{font-size:clamp(78px,14vw,125px)}
+}
+@media(max-width:370px){.opening-copy h1{font-size:80px}.chapter-copy h2{font-size:62px}.nightfall-copy h2{font-size:86px}.film-index{left:16px}.obs-sidebar{padding:15px}}
+@media(prefers-reduced-motion:reduce){
+.cinema-flare,.cinema-glow,.nightfall-image,.nightfall-halo,.nightfall-copy,.chapter-copy{transform:none!important;will-change:auto!important}
+.cinema-light{opacity:.35}.nightfall-copy{top:50%;left:5%;width:90%;transform:translateY(-50%)!important;opacity:1!important}.nightfall-halo{display:none}.nightfall-image{inset:0}.nightfall-stars{opacity:.6}
+}
+/* Editorial pacing: each cinematic transition reaches its destination without dead scrolling. */
+@media(min-width:961px){
+.opening{height:170vh}.transition{height:225vh}.work-reel{height:270vh}.chapter{height:135vh}.nightfall{height:210vh}
+.observatory{display:grid;grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr) auto;min-height:110svh;padding:105px clamp(24px,4.4vw,80px) 55px}
+.observatory-topline{grid-row:1}
+.obs-intro{grid-row:2;grid-column:1;align-self:start;width:39%;z-index:3;margin:22px 0 0;pointer-events:none}
+.obs-intro h2{font-size:clamp(78px,7.8vw,129px);margin:28px 0 19px;line-height:.82}
+.obs-intro>div>p{font-size:clamp(16px,1.2vw,20px);line-height:1.48;max-width:440px}
+.obs-accuracy{display:none}
+.obs-system{grid-row:2;grid-column:1;position:relative;z-index:2;min-height:820px;grid-template-columns:minmax(280px,.40fr) minmax(0,.60fr);gap:2vw;align-items:start;padding-top:295px}
+.obs-sidebar{margin-top:0;max-width:470px;padding:23px 27px;align-self:start}
+.obs-stage{margin-top:-245px;min-height:0;align-self:start;padding-left:12px}
+.obs-stage-top{margin-bottom:13px}
+.obs-lens{width:min(62vw,min(70vh,770px))}
+.observatory-foot{grid-row:3;align-self:end;margin-top:18px}
+}
+@media(max-width:730px){.opening{height:155vh}.transition{height:218vh}.work-reel{height:250vh}.chapter{height:125vh}.nightfall{height:205vh}}
+@media(min-width:961px){
+.obs-intro h2{font-size:clamp(70px,6.4vw,105px)}
+.obs-intro>div>p{max-width:460px;font-size:clamp(16px,1.15vw,19px)}
+.obs-system{padding-top:420px}
+.obs-stage{margin-top:-370px}
+}
+body.in-observatory .film-index{opacity:0}
+/* Composite the light: no animated radial-gradient regeneration during scroll. */
+.cinema-glow{inset:0;background:radial-gradient(ellipse 45% 60% at 50% 50%,rgba(159,205,217,.24),transparent 75%),radial-gradient(ellipse 36% 36% at 30% 67%,rgba(118,111,166,.08),transparent 78%);will-change:transform,opacity}
+.cinema-flare{background:linear-gradient(130deg,transparent 28%,rgba(213,231,220,.034) 48%,transparent 72%);transform:rotate(var(--light-angle));will-change:transform,opacity}
+.papers{background:radial-gradient(ellipse 63% 72% at 68% 28%,#fff8ea 0%,#e9dfcf 56%,#bfb5a8 120%)}
+.papers:before{transform:translate3d(var(--archive-move,0px),0,0) rotate(-17deg);will-change:transform,opacity}
