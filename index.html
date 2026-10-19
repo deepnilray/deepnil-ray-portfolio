@@ -1,97 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#11171a">
-<meta name="description" content="Deepnil Ray — Deputy CEO of The NoRCEL Institute. Public writing, research and science communication.">
-<meta property="og:title" content="Deepnil Ray — Research & Science Communication">
-<meta property="og:description" content="Research, astronomy, mathematics and science communication.">
-<meta property="og:type" content="website">
-<title>Deepnil Ray — The Unfinished Atlas</title>
-<link rel="icon" href="./favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css">
-<script src="./app.js" defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#11171a" name="theme-color"/>
+<meta content="Deepnil Ray — Deputy CEO, The NoRCEL Institute; student at Ashoka University. Astronomy, mathematics and science communication." name="description"/>
+<meta content="Deepnil Ray | Research &amp; Science Communication" property="og:title"/>
+<meta content="Public research, selected publications, and science communication." property="og:description"/>
+<meta content="website" property="og:type"/>
+<title>Deepnil Ray | Research &amp; Science Communication</title>
+<link href="./favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/>
+<link href="./style.css" rel="stylesheet"/>
+<script defer="" src="./app.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#work">Skip to research</a>
-<div class="grain" aria-hidden="true"></div>
-<div class="page-progress" id="page-progress" aria-hidden="true"></div>
-<div class="entry" id="entry" role="dialog" aria-modal="true" aria-labelledby="entry-title">
-  <canvas id="entry-canvas" class="entry-canvas" aria-hidden="true"></canvas>
-  <div class="entry-top mono"><span>DR / PUBLIC PROFILE</span><span>SELECTED WORK</span></div>
-  <div class="entry-content">
-    <p class="eyebrow">A personal website for research and public work.</p>
-    <h1 id="entry-title">Hello<span class="period">.</span></h1>
-    <form id="entry-form" class="entry-form"><label class="sr-only" for="entry-input">Say hello to enter</label><input id="entry-input" autocomplete="off" placeholder="Say hi, or ask me anything" maxlength="180"><button type="submit" aria-label="Enter website">↗</button></form>
-    <button type="button" class="entry-explore" id="entry-explore">Or just come in <span>↗</span></button>
-  </div>
-  <div class="entry-bottom mono"><span>DEEPNIL RAY</span><span>RESEARCH · SCIENCE COMMUNICATION</span></div>
-</div>
-<header id="header" class="site-header">
-  <a href="#top" class="signature" aria-label="Deepnil Ray, back to top"><span class="signature-orbit">◌</span> DR<span class="period">.</span></a>
-  <p class="header-note">DEEPNIL RAY <span>— NORCEL INSTITUTE</span></p>
-  <nav class="site-nav" id="site-nav" aria-label="Main navigation"><a href="#work">The work</a><a href="#writing">Writing</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
-  <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span class="sr-only">Toggle menu</span></button>
+<div aria-hidden="true" class="grain"></div>
+<div aria-hidden="true" class="page-progress" id="page-progress"></div>
+<header class="site-header" id="header">
+<a aria-label="Deepnil Ray, back to top" class="signature" href="#top"><span class="signature-orbit">◌</span> DR<span class="period">.</span></a>
+<p class="header-note">DEEPNIL RAY  /  RESEARCH &amp; COMMUNICATION</p>
+<nav aria-label="Main navigation" class="site-nav" id="site-nav"><a href="#work">Research</a><a href="#writing">Publications</a><a href="#about">Biography</a><a href="#contact">Connect</a><button aria-controls="query" aria-expanded="false" id="search-toggle" type="button">Search</button></nav>
+<button aria-controls="site-nav" aria-expanded="false" class="menu-toggle" id="menu-toggle" type="button"><span></span><span></span><span class="sr-only">Toggle menu</span></button>
 </header>
 <main id="top">
-<section class="opening" id="opening" aria-label="Introduction"><div class="opening-stick">
-  <div class="opening-surface"></div>
-  <canvas class="field-canvas" id="field-canvas" aria-hidden="true"></canvas>
-  <div class="opening-grid" aria-hidden="true"><span></span><span></span><span></span></div>
-  <div class="opening-copy" id="opening-copy">
-    <div class="opening-overline mono"><span class="live-dot"></span> PUBLIC WORK / SELECTED WRITING</div>
-    <h1><span>Deepnil</span><em>Ray.</em></h1>
-    <div class="opening-sub"><p>Mathematics.<br>Astronomy.<br><em>Science communication.</em></p><span class="hero-coordinate mono">THE NORCEL INSTITUTE<br>ASHOKA UNIVERSITY<br>PUBLIC PROFILES</span></div>
-  </div>
-  <div class="opening-foot mono"><span>PUBLIC WORK AND WRITING</span><span class="opening-foot-middle">EXPLORE THE PUBLIC RECORD</span><span>SCROLL TO LOOK CLOSER <span class="arrow-down">↓</span></span></div>
-  <div class="opening-flash" id="opening-flash"></div>
+<section aria-label="Introduction" class="opening" id="opening"><div class="opening-stick">
+<div class="opening-surface"></div>
+<canvas aria-hidden="true" class="field-canvas" id="field-canvas"></canvas>
+<div aria-hidden="true" class="opening-grid"><span></span><span></span><span></span></div>
+<div class="opening-copy" id="opening-copy">
+<div class="opening-overline mono">DEEPNIL RAY  /  PUBLIC PORTFOLIO</div>
+<h1><span>Deepnil</span><em>Ray.</em></h1>
+<div class="opening-sub"><p>Astronomy. <br/> Mathematics. <br/><em>Science communication.</em></p><span class="hero-coordinate mono">DEPUTY CEO · NORCEL<br/>ASHOKA UNIVERSITY<br/>RESEARCH &amp; OUTREACH</span></div>
+</div>
+<div class="opening-foot mono"><span>RESEARCH / SELECTED WORK</span><span class="opening-foot-middle">OBSERVATION AND ANALYSIS</span><span>SCROLL TO EXPLORE <span class="arrow-down">↓</span></span></div>
+<div class="opening-flash" id="opening-flash"></div>
 </div></section>
-<section class="transition" id="transition" aria-label="The sky"><div class="transition-stick">
-  <div class="transition-tone" id="transition-tone"></div>
-  <div class="transition-image" id="transition-image"><img src="./assets/cosmos.jpg" alt="An illustrative purple cloud of interstellar dust in a dark star field" fetchpriority="high"><div class="transition-img-shade"></div></div>
-  <div class="transition-word" id="transition-word" aria-hidden="true">DEEPNIL <i>RAY.</i></div>
-  <div class="transition-question" id="transition-question"><span class="mono">OBSERVATION / 001</span><h2>Science, research,<br>and <em>education.</em></h2><p>Public-facing research, articles and science communication.</p></div>
-  <div class="transition-caption mono"><span>IMAGE / VISUAL INTERPRETATION</span><span>NOT OBSERVATIONAL EVIDENCE</span></div>
-  <div class="transition-wipe" id="transition-wipe"></div>
+<section aria-label="The sky" class="transition" id="transition"><div class="transition-stick">
+<div class="transition-tone" id="transition-tone"></div>
+<div class="transition-image" id="transition-image"><img alt="An illustrative purple cloud of interstellar dust in a dark star field" fetchpriority="high" src="./assets/cosmos.jpg"/><div class="transition-img-shade"></div></div>
+<div aria-hidden="true" class="transition-word" id="transition-word">A CLOSER <i>LOOK.</i></div>
+<div class="transition-question" id="transition-question"><span class="mono">01 / ASTRONOMY</span><h2>From the sky<br/>to <em>the record.</em></h2><p>Astronomical research and published work, with sources available below.</p></div>
+<div class="transition-caption mono"><span>ILLUSTRATIVE ASTRONOMICAL ARTWORK</span><span>NOT RESEARCH DATA</span></div>
+<div class="transition-wipe" id="transition-wipe"></div>
 </div></section>
-<section class="statement" id="work"><div class="statement-head mono"><span>01 — PUBLIC RESEARCH</span><span>ASTRONOMY · MATHEMATICS · OUTREACH</span></div>
-  <div class="statement-body"><p class="statement-small">Deepnil Ray is listed as Deputy CEO of The NoRCEL Institute and as a student at Ashoka University.</p><h2>Research, education and <em>science communication.</em></h2><p class="statement-end">Selected public work includes astronomy writing, mathematical manuscripts and interdisciplinary science outreach.</p></div>
+<section class="statement" id="work"><div class="statement-head mono"><span>01 / PUBLIC RESEARCH</span><span>ASTRONOMY · MATHEMATICS · OUTREACH</span></div>
+<div class="statement-body"><p class="statement-small">Research and science communication.</p><h2>From astronomical observation to <em>mathematical analysis.</em></h2><p class="statement-end">An overview of selected public work, publications and institutional activities.</p></div>
 </section>
-<section class="work-reel" id="reel" aria-label="Explore the research"><div class="reel-stick">
-  <div class="reel-intro"><span class="mono">PUBLIC WORK / FOUR DIRECTIONS</span><p>Turn the<br><em>work.</em></p><span class="mono reel-hint">SCROLL / DRAG / USE THE INDEX</span></div>
-  <div class="reel-scene" id="reel-scene" aria-live="off"><div class="reel-wheel" id="reel-wheel">
-    <a class="reel-card" href="#observations" data-card="0" aria-label="Astronomical observation"><img src="./assets/horizon.jpg" alt="Abstract dark sky with a distant glow"><span>FIELD / 01</span></a>
-    <a class="reel-card" href="#patterns" data-card="1" aria-label="Mathematics and sequence patterns"><img src="./assets/mathematics.jpg" alt="Copper coloured logarithmic curves on a dark field"><span>FIELD / 02</span></a>
-    <a class="reel-card" href="#people" data-card="2" aria-label="Science outreach"><img src="./assets/earth.jpg" alt="The sunlit Earth from space"><span>FIELD / 03</span></a>
-    <a class="reel-card" href="#writing" data-card="3" aria-label="Written research"><img src="./assets/lunar.jpg" alt="Cratered lunar surface"><span>FIELD / 04</span></a>
-  </div></div>
-  <div class="reel-current"><span class="mono" id="reel-count">01 / 04</span><div><h3 id="reel-title">Public astronomy work</h3><p id="reel-descr">Astronomy, asteroids and observational research.</p></div></div>
-  <div class="reel-index" id="reel-index" aria-label="Research index"><button class="active" data-reel="0">01 <span>Sky surveys</span></button><button data-reel="1">02 <span>Mathematics</span></button><button data-reel="2">03 <span>Outreach</span></button><button data-reel="3">04 <span>Writing</span></button></div>
-  <div class="reel-progress" aria-hidden="true"><span id="reel-progress"></span></div>
+<section aria-label="Explore the research" class="work-reel" id="reel"><div class="reel-stick">
+<div class="reel-intro"><span class="mono">RESEARCH  /  FOUR AREAS</span><p>Selected<br/><em>work.</em></p><span class="mono reel-hint">SCROLL OR SELECT A SUBJECT</span></div>
+<div aria-live="off" class="reel-scene" id="reel-scene"><div class="reel-wheel" id="reel-wheel">
+<a aria-label="Astronomy" class="reel-card" data-card="0" href="#observations"><img alt="Abstract dark sky with a distant glow" src="./assets/horizon.jpg"/><span>FIELD / 01</span></a>
+<a aria-label="Mathematics" class="reel-card" data-card="1" href="#patterns"><img alt="Copper coloured logarithmic curves on a dark field" src="./assets/mathematics.jpg"/><span>FIELD / 02</span></a>
+<a aria-label="Science communication" class="reel-card" data-card="2" href="#people"><img alt="Illustration of Earth from space" src="./assets/earth.jpg"/><span>FIELD / 03</span></a>
+<a aria-label="Publications" class="reel-card" data-card="3" href="#writing"><img alt="Cratered lunar surface" src="./assets/lunar.jpg"/><span>FIELD / 04</span></a>
+</div></div>
+<div class="reel-current"><span class="mono" id="reel-count">01 / 04</span><div><h3 id="reel-title">Astronomy</h3><p id="reel-descr">Public writing on astronomy, mathematics and science education.</p></div></div>
+<div aria-label="Research index" class="reel-index" id="reel-index"><button class="active" data-reel="0">01 <span>Astronomy</span></button><button data-reel="1">02 <span>Mathematics</span></button><button data-reel="2">03 <span>NoRCEL</span></button><button data-reel="3">04 <span>Publications</span></button></div>
+<div aria-hidden="true" class="reel-progress"><span id="reel-progress"></span></div>
 </div></section>
-<section class="chapters" aria-label="Research details">
-  <article class="chapter" id="observations" data-chapter="0"><div class="chapter-visual"><img src="./assets/earth-night.jpg" loading="lazy" alt="Nighttime illumination across Earth from satellite imagery"><span class="chapter-stamp mono">PLATE 01 / ASTRONOMY</span></div><div class="chapter-copy"><span class="mono">I / ASTRONOMY</span><h2>Astronomy &amp;<br><em>asteroids.</em></h2><p>Public work includes a study of asteroid 2022 UO26 and an article about asteroid identification, both linked through public research sources.</p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4885583" target="_blank" rel="noopener noreferrer">Asteroid study (public record) <span>↗</span></a></div></article>
-  <article class="chapter chapter-invert" id="patterns" data-chapter="1"><div class="chapter-copy"><span class="mono">II / MATHEMATICS</span><h2>A pattern<br>is not <em>a proof.</em></h2><p>Public mathematical manuscripts and contributions to sequence research; individual preprints are labelled in the publications archive.</p><a href="https://www.researchgate.net/profile/Deepnil-Ray" target="_blank" rel="noopener noreferrer">Research publications and references <span>↗</span></a></div><div class="chapter-visual"><img src="./assets/mathematics.jpg" loading="lazy" alt="Mathematical spiral made of delicate concentric curves"><span class="chapter-stamp mono">PLATE 02 / RESEARCH</span></div></article>
-  <article class="chapter" id="people" data-chapter="2"><div class="chapter-visual"><img src="./assets/earth.jpg" loading="lazy" alt="Sunlit globe viewed from space"><span class="chapter-stamp mono">PLATE 03 / THE NORCEL INSTITUTE</span></div><div class="chapter-copy"><span class="mono">III / THE NORCEL INSTITUTE</span><h2>Ideas travel<br><em>through people.</em></h2><p>Deputy CEO of The NoRCEL Institute, a science communication and interdisciplinary astroscience organisation.</p><a href="https://norcel.net/the-norcel-team/" target="_blank" rel="noopener noreferrer">NoRCEL team <span>↗</span></a></div></article>
+<section aria-label="Research details" class="chapters">
+<article class="chapter" data-chapter="0" id="observations"><div class="chapter-visual"><img alt="Illustration of Earth at night" loading="lazy" src="./assets/earth-night.jpg"/><span class="chapter-stamp mono">PUBLICATION / 2024</span></div><div class="chapter-copy"><span class="mono">I / ASTRONOMY</span><h2>Astronomy &amp;<br/><em>asteroids.</em></h2><p>Published work includes a study of the orbital and physical characteristics of main-belt asteroid 2022 UO26, alongside public writing on star formation and astrobiology.</p><a href="https://www.opastpublishers.com/open-access-articles/orbital-and-physical-characterization-of-mainbelt-asteroid-2022-uo26-8184.html" rel="noopener noreferrer" target="_blank">Read the journal article <span aria-hidden="true">↗</span></a></div></article>
+<article class="chapter chapter-invert" data-chapter="1" id="patterns"><div class="chapter-copy"><span class="mono">II / MATHEMATICS</span><h2>Sequences &amp;<br/><em>recurrences.</em></h2><p>Public mathematical preprints address integer sequences, recurrence relations and generating functions. These are independently accessible manuscripts, not independently certified proofs.</p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7176239" rel="noopener noreferrer" target="_blank">Read a mathematical preprint <span aria-hidden="true">↗</span></a></div><div class="chapter-visual"><img alt="Mathematical spiral made of delicate concentric curves" loading="lazy" src="./assets/mathematics.jpg"/><span class="chapter-stamp mono">MATHEMATICS / PREPRINTS</span></div></article>
+<article class="chapter" data-chapter="2" id="people"><div class="chapter-visual"><img alt="Illustration of Earth from space" loading="lazy" src="./assets/earth.jpg"/><span class="chapter-stamp mono">NORCEL / ORGANISATION</span></div><div class="chapter-copy"><span class="mono">III / THE NORCEL INSTITUTE</span><h2>Science &amp;<br/><em>education.</em></h2><p>As Deputy CEO of The NoRCEL Institute, Deepnil is involved in an organisation dedicated to science communication and interdisciplinary engagement with astroscience.</p><a href="https://norcel.net/the-norcel-team/" rel="noopener noreferrer" target="_blank">NoRCEL team <span>↗</span></a></div></article>
 </section>
-<section class="ink-break" aria-label="A thought"><div class="ink-orbit" aria-hidden="true"></div><p>Mathematics, astronomy, and the public understanding of science.</p><strong><em>Public work, in one place.</em></strong><span class="mono">DEEPNIL RAY / PUBLIC PROFILE</span></section>
-<section class="papers" id="writing"><div class="papers-top mono"><span>02 — ARTICLES & PUBLICATIONS</span><span>SELECTED PUBLIC LINKS</span></div><div class="papers-layout"><div class="papers-title"><h2>Articles &amp;<br><em>papers.</em></h2><p>Selected publicly available articles and preprints; all titles link to their original public records. Preprints are not peer-reviewed publications.</p><span class="papers-count mono">06 SELECTED PUBLIC LINKS</span></div><div class="papers-list">
-  <a href="https://norcel.net/the-asteroid-belt/" target="_blank" rel="noopener noreferrer"><span class="paper-id">01</span><span class="paper-name">The asteroid belt<small>NORCEL / PUBLIC ARTICLE / 2023</small></span><span class="paper-arrow">↗</span></a>
-  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4885583" target="_blank" rel="noopener noreferrer"><span class="paper-id">02</span><span class="paper-name">Orbital and Physical Characterization of Main-Belt Asteroid 2022 UO26<small>SSRN / PAPER / 2024</small></span><span class="paper-arrow">↗</span></a>
-  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4982884" target="_blank" rel="noopener noreferrer"><span class="paper-id">03</span><span class="paper-name">Extremophiles and Their Implications for Astrobiology<small>SSRN / PREPRINT / 2024</small></span><span class="paper-arrow">↗</span></a>
-  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5169077" target="_blank" rel="noopener noreferrer"><span class="paper-id">04</span><span class="paper-name">The Formation of Stars: A Comprehensive Review of Processes and Challenges<small>SSRN / PREPRINT / 2025</small></span><span class="paper-arrow">↗</span></a>
-  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5160870" target="_blank" rel="noopener noreferrer"><span class="paper-id">05</span><span class="paper-name">Ethics in Motion: Navigating Moral Dilemmas in Car-Related Scenarios<small>SSRN / PREPRINT / 2025</small></span><span class="paper-arrow">↗</span></a>
-  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6019497" target="_blank" rel="noopener noreferrer"><span class="paper-id">06</span><span class="paper-name">A Critical Analysis of the X-tractor Pipeline<small>SSRN / PREPRINT / 2026</small></span><span class="paper-arrow">↗</span></a>
-</div></div></section>
-<section class="about" id="about"><span class="mono">03 / ABOUT</span><div class="about-columns"><h2>About<br><em>Deepnil Ray.</em></h2><div><p>Deepnil Ray is a student at Ashoka University and Deputy CEO of The NoRCEL Institute, as stated in his public academic and institutional profiles.</p><p>His publicly listed work covers astrophysics, mathematics, astrobiology, and interdisciplinary science outreach.</p><a href="https://www.researchgate.net/profile/Deepnil-Ray" target="_blank" rel="noopener noreferrer">Research profile ↗</a></div></div></section>
-<section class="end" id="contact"><div class="end-top mono"><span>04 / GET IN TOUCH</span><span>PUBLIC PROFILES</span></div><h2>Connect<br><em>with Deepnil.</em></h2><p>Public research, organisational and professional profiles.</p><div class="end-links"><a href="https://in.linkedin.com/in/deepnil-ray-a6a52a202" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.researchgate.net/profile/Deepnil-Ray" target="_blank" rel="noopener noreferrer">ResearchGate ↗</a><a href="https://norcel.net/" target="_blank" rel="noopener noreferrer">NoRCEL ↗</a><a href="#top">Start again ↑</a></div><div class="end-signature" aria-hidden="true">DR<span>.</span></div></section>
+<section aria-label="A thought" class="ink-break"><div aria-hidden="true" class="ink-orbit"></div><p>THE NORCEL INSTITUTE</p><strong><em>Science communication &amp; outreach.</em></strong><span class="mono">SELECTED PUBLIC WORK</span></section>
+<section class="papers" id="writing"><div class="papers-top mono"><span>02 / PUBLICATIONS</span><span>SELECTED PUBLIC RECORDS</span></div><div class="papers-layout"><div class="papers-title"><h2>Selected<br/><em>writing.</em></h2><p>A selection of publicly accessible work. Preprints are distinguished from journal publications; paper titles are reproduced as published and do not independently establish their claims.</p><span class="papers-count mono">06 SELECTED PUBLICATIONS</span></div><div class="papers-list"><a aria-label="Orbital and Physical Characterization of Main-Belt Asteroid 2022 UO26 — JOURNAL SHORT COMMUNICATION · 2024" href="https://www.opastpublishers.com/open-access-articles/orbital-and-physical-characterization-of-mainbelt-asteroid-2022-uo26-8184.html" rel="noopener noreferrer" target="_blank"><span class="paper-id">01</span><span class="paper-name">Orbital and Physical Characterization of Main-Belt Asteroid 2022 UO26<small>JOURNAL SHORT COMMUNICATION · 2024</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="Extremophiles and Their Implications for Astrobiology — SSRN PREPRINT · 2024" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4982884" rel="noopener noreferrer" target="_blank"><span class="paper-id">02</span><span class="paper-name">Extremophiles and Their Implications for Astrobiology<small>SSRN PREPRINT · 2024</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="The Formation of Stars: A Comprehensive Review of Processes and Challenges — SSRN PREPRINT · 2025" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5169077" rel="noopener noreferrer" target="_blank"><span class="paper-id">03</span><span class="paper-name">The Formation of Stars: A Comprehensive Review of Processes and Challenges<small>SSRN PREPRINT · 2025</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="Empowerment Through Astroscience: NoRCEL Institute’s Educational Journey Across the Global South — SSRN PREPRINT · 2026" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6449178" rel="noopener noreferrer" target="_blank"><span class="paper-id">04</span><span class="paper-name">Empowerment Through Astroscience: NoRCEL Institute’s Educational Journey Across the Global South<small>SSRN PREPRINT · 2026</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="A Short Proof of Mathar’s 2022 Recurrence Conjecture for OEIS A177265 — SSRN PREPRINT · 2026" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7176239" rel="noopener noreferrer" target="_blank"><span class="paper-id">05</span><span class="paper-name">A Short Proof of Mathar’s 2022 Recurrence Conjecture for OEIS A177265<small>SSRN PREPRINT · 2026</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a><a aria-label="A Critical Analysis of the X-tractor Pipeline — SSRN PREPRINT · 2026" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6019497" rel="noopener noreferrer" target="_blank"><span class="paper-id">06</span><span class="paper-name">A Critical Analysis of the X-tractor Pipeline<small>SSRN PREPRINT · 2026</small></span><span aria-hidden="true" class="paper-arrow">↗</span></a></div></div></section>
+<section class="about" id="about"><span class="mono">03 / BIOGRAPHY</span><div class="about-columns"><h2>Deepnil<br/><em>Ray.</em></h2><div><p>Deepnil Ray is a student at Ashoka University and Deputy CEO of The NoRCEL Institute. His public research and writing span astronomy, astrobiology, mathematics and science communication.</p><p>His institutional profile and publication records are linked here so that appointments and research can be checked against their original sources.</p><a href="https://www.researchgate.net/profile/Deepnil-Ray" rel="noopener noreferrer" target="_blank">ResearchGate profile ↗</a></div></div></section>
+<section class="end" id="contact"><div class="end-top mono"><span>04 / CONTACT &amp; PROFILES</span><span>OFFICIAL PUBLIC LINKS</span></div><h2>Professional<br/><em>contacts.</em></h2><p>For institutional correspondence, research enquiries and professional connections, use the public profiles below.</p><div class="end-links"><a href="https://in.linkedin.com/in/deepnil-ray-a6a52a202" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a><a href="https://www.researchgate.net/profile/Deepnil-Ray" rel="noopener noreferrer" target="_blank">ResearchGate ↗</a><a href="https://norcel.net/" rel="noopener noreferrer" target="_blank">NoRCEL ↗</a><a href="#top">Start again ↑</a></div><div aria-hidden="true" class="end-signature">DR<span>.</span></div></section>
 </main>
-<footer class="footer mono"><span>DEEPNIL RAY © 2026</span><span>RESEARCH · OUTREACH · WRITING</span><a href="#top">BACK TO THE BEGINNING ↑</a></footer>
-<div class="query" id="query"><div class="query-head mono"><span class="query-glow"></span> EXPLORE THIS SITE</div><form id="query-form"><label class="sr-only" for="query-input">Ask the website</label><input id="query-input" placeholder="Find papers, roles, or contact…" autocomplete="off" maxlength="180"><button aria-label="Search or navigate" type="submit">↗</button></form><div class="query-response" id="query-response" aria-live="polite" role="status"></div></div>
-<div class="cursor" id="cursor" aria-hidden="true"><span>VIEW</span></div>
+<footer class="footer mono"><span>DEEPNIL RAY © 2026</span><span>RESEARCH &amp; SCIENCE COMMUNICATION</span><a href="#top">BACK TO TOP ↑</a></footer>
+<div aria-hidden="true" class="query" id="query" inert=""><div aria-hidden="true" class="query-head mono">SEARCH SECTIONS</div><form id="query-form"><label class="sr-only" for="query-input">Ask the website</label><input aria-label="Search site sections" autocomplete="off" id="query-input" maxlength="180" placeholder="Search publications or research…"/><button aria-label="Navigate to matching section" type="submit">↗</button></form><div aria-live="polite" class="query-response" id="query-response" role="status"></div></div>
+<div aria-hidden="true" class="cursor" id="cursor"><span>VIEW</span></div>
 </body>
 </html>

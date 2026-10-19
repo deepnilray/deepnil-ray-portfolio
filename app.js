@@ -8,14 +8,14 @@ const ease = t => { t=clamp(t);return t*t*(3-2*t); };
 const range = (v,a,b) => ease((v-a)/(b-a));
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const mobile = matchMedia('(max-width:730px)');
-let W=innerWidth,H=innerHeight,lastTime=0,renderScroll=scrollY,mouseX=.55,mouseY=.48,cursorX=-100,cursorY=-100,entered=false,visible=true;
+let W=innerWidth,H=innerHeight,lastTime=0,renderScroll=scrollY,mouseX=.55,mouseY=.48,cursorX=-100,cursorY=-100,entered=true,visible=true;
 const opening=$('#opening'), transition=$('#transition'),reel=$('#reel');
 const stage=$('#opening .opening-stick'), transitionStage=$('.transition-stick');
 const header=$('#header'), progress=$('#page-progress'), reelWheel=$('#reel-wheel'), reelCurrent=$('#reel-count'),reelTitle=$('#reel-title'),reelDescr=$('#reel-descr'),reelProgress=$('#reel-progress');
-const titles=['Astronomy & asteroids','Mathematics','The NoRCEL Institute','Public writing'];
-const descriptions=['Public astronomy articles and asteroid research.','Public mathematical manuscripts and references.','Science outreach and interdisciplinary education.','Selected articles and preprints.'];
+const titles=['Astronomy','Mathematics','Science communication','Publications'];
+const descriptions=['Public articles on asteroids, stars and astrobiology.','Selected mathematical manuscripts and recurrence research.','Work with the NoRCEL Institute.','Journal publications and publicly accessible preprints.'];
 const canvas=$('#field-canvas'),ctx=canvas.getContext('2d',{alpha:true});
-const entryCanvas=$('#entry-canvas'),ectx=entryCanvas.getContext('2d',{alpha:true});
+const entryCanvas=null,ectx=null;
 let cw=0,ch=0,ew=0,eh=0,dpr=1;
 const points=[];
 // Deterministic Fibonacci sphere: the characters actually rotate in 3-space.
@@ -24,7 +24,7 @@ for(let i=0;i<960;i++){
  points.push({x:Math.cos(ang)*rr,y:yy,z:Math.sin(ang)*rr,k:i%13});
 }
 function size(){W=innerWidth;H=innerHeight;dpr=Math.min(1.65,devicePixelRatio||1);
- for(const [c,context,w,h] of [[canvas,ctx,W,H],[entryCanvas,ectx,W,H]]){if(!context)continue;c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);c.style.width=w+'px';c.style.height=h+'px';context.setTransform(dpr,0,0,dpr,0,0);}
+ for(const [c,context,w,h] of [[canvas,ctx,W,H]]){if(!context)continue;c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);c.style.width=w+'px';c.style.height=h+'px';context.setTransform(dpr,0,0,dpr,0,0);}
  cw=W;ch=H;ew=W;eh=H;
 }
 size();addEventListener('resize',size,{passive:true});
@@ -32,8 +32,8 @@ const starSeed=(n)=>{let x=Math.sin(n*68.173+31.29)*68453.392;return x-Math.floo
 function drawSphere(context,w,h,time,entry=false){
  if(!context)return;
  context.clearRect(0,0,w,h);
- const scale=Math.min(w,h)*(entry?.24:(mobile.matches?.35:.43));
- const cx=w*(entry?.68:(mobile.matches?.62:.69)),cy=h*(entry?.47:(mobile.matches?.42:.48));
+ const scale=Math.min(w,h)*(entry?.24:(mobile.matches?.28:.34));
+ const cx=w*(entry?.68:(mobile.matches?.67:.72)),cy=h*(entry?.47:(mobile.matches?.37:.41));
  const spin=time*(entry?.00014:.00016)+(mouseX-.5)*.25;
  const tilt=.22+(mouseY-.5)*.20;
  const c=Math.cos(spin),s=Math.sin(spin),ca=Math.cos(tilt),sa=Math.sin(tilt);
@@ -58,41 +58,40 @@ function drawSphere(context,w,h,time,entry=false){
  const a=time*.00031,c2x=cx+Math.cos(a)*scale*1.03,c2y=cy+Math.sin(a)*scale*.33;
  context.beginPath();context.arc(c2x,c2y,2.4,0,Math.PI*2);context.fillStyle='#d7e7c8';context.fill();
 }
-const entry=$('#entry'),entryForm=$('#entry-form'),entryInput=$('#entry-input');
 const dock=$('#query'),queryInput=$('#query-input'),queryResp=$('#query-response');
-const queryTargets={papers:'#writing',mathematics:'#patterns',astronomy:'#observations',outreach:'#people',about:'#about',contact:'#contact',work:'#reel',hello:'#top'};
+dock.classList.add('ready');
+const searchToggle=$('#search-toggle');
+function setSearch(open){dock.classList.toggle('open',open);dock.toggleAttribute('inert',!open);dock.setAttribute('aria-hidden',String(!open));searchToggle.setAttribute('aria-expanded',String(open));if(open){const n=$('#site-nav');n.classList.remove('open');$('#menu-toggle').setAttribute('aria-expanded','false');queryInput.focus();}else queryInput.blur();}
+searchToggle.addEventListener('click',()=>setSearch(!dock.classList.contains('open')));
+const queryTargets={papers:'#writing',mathematics:'#patterns',astronomy:'#observations',outreach:'#people',about:'#about',contact:'#contact',work:'#work',hello:'#top'};
 function interpret(raw){const t=raw.toLowerCase().trim();if(!t)return null;
  const scores={papers:0,mathematics:0,astronomy:0,outreach:0,about:0,contact:0,work:0,hello:0};
- const dictionaries={
- papers:[/publish|paper|preprint|article|journal|manuscript|writing|ssrn|oeis|citation|reference|publication/,/researchgate|publication/],
- mathematics:[/math|theorem|recurrence|sequence|integer|number theory|generating function|algebra|proof|combinatoric|prime|conjecture/],
- astronomy:[/astro|space|planet|star|light curve|telescope|sky|survey|asteroid|observation|occultat|dimming|cosmos/],
- outreach:[/norcel|science communication|outreach|institute|public engagement|talk|lecture|education/],
- about:[/who are you|your story|biograph|education|ashoka|yourself|background|personal|profile/],
- contact:[/contact|email|connect|collaborat|hire|reach|linkedin|message|work together/],
- work:[/project|research|what do you do|what are you working|your work|explore|show me/],
- hello:[/^hi\b|^hello\b|^hey\b|^good morning|^greetings|^start|^home|^begin|^open/]
+ const terms={
+ papers:/publish|paper|preprint|article|journal|manuscript|writing|ssrn|oeis|citation|publication|record/,
+ mathematics:/math|theorem|recurrence|sequence|integer|generating function|algebra|proof|combinatoric|prime|conjecture/,
+ astronomy:/astro|space|planet|star|telescope|sky|survey|asteroid|observation|cosmos|extremophile/,
+ outreach:/norcel|science communication|outreach|institute|public engagement|education|deputy ceo/,
+ about:/who is|who are|biograph|ashoka|background|profile|about/,
+ contact:/contact|email|connect|collaborat|reach|linkedin|message|correspondence/,
+ work:/research|what do|work|explore|portfolio|overview/,
+ hello:/^home$|^top$|^start$/
  };
- Object.entries(dictionaries).forEach(([k,patterns])=>patterns.forEach((r,i)=>{if(r.test(t))scores[k]+=i===0?4:2}));
- const best=Object.entries(scores).sort((a,b)=>b[1]-a[1])[0];return best[1]>0?best[0]:'unknown';
+ for(const [name,re] of Object.entries(terms))if(re.test(t))scores[name]+=3;
+ // Contextual priority: a request for a particular publication should find the archive.
+ if(/paper|preprint|publication|journal|manuscript|ssrn/.test(t))scores.papers+=5;
+ const best=Object.entries(scores).sort((a,b)=>b[1]-a[1])[0];
+ return best[1]>0?best[0]:'unknown';
 }
 function goTo(selector){const node=$(selector);if(node){node.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});return true}return false;}
-function navigate(raw){const target=interpret(raw);
- const messages={papers:'Opening publicly listed publications.',mathematics:'Taking you to the mathematics work.',astronomy:'Opening published astronomy work.',outreach:'Showing science communication and NoRCEL.',about:'Taking you to the personal biography.',contact:'Opening collaboration links.',work:'Opening selected public work.',hello:'Welcome to Deepnil Ray's public website.'};
- if(target==='unknown')return {message:'I can show public research, articles, NoRCEL, biography, or contact. Try one of those.',ok:false};
- goTo(queryTargets[target]);return {message:messages[target],ok:true};
+function navigate(raw){const intent=interpret(raw);
+ const messages={papers:'Showing selected public publications.',mathematics:'Showing mathematical research.',astronomy:'Showing astronomy research.',outreach:'Showing work with the NoRCEL Institute.',about:'Showing the biography.',contact:'Showing public professional contacts.',work:'Showing an overview of research.',hello:'Returning to the beginning.'};
+ if(intent==='unknown')return {message:'No section found. Try “publications”, “astronomy”, “mathematics”, “NoRCEL”, “biography” or “contact”.',ok:false};
+ goTo(queryTargets[intent]);return {message:messages[intent],ok:true};
 }
 function showResponse(message){queryResp.textContent=message;queryResp.classList.add('shown');}
-function enter(initial=''){
- if(entered)return;entered=true;document.body.classList.add('entered');entry.classList.add('leave');dock.classList.add('ready');
- window.setTimeout(()=>{entry.setAttribute('aria-hidden','true');entry.style.display='none';},900);
- if(initial){const result=navigate(initial);showResponse(result.message)}
-}
-entryForm.addEventListener('submit',ev=>{ev.preventDefault();enter(entryInput.value.trim())});
-$('#entry-explore').addEventListener('click',()=>enter());
-$('#query-form').addEventListener('submit',ev=>{ev.preventDefault();const v=queryInput.value.trim();if(!v)return;const a=navigate(v);showResponse(a.message);queryInput.value='';});
-addEventListener('keydown',e=>{if(e.key==='Escape'){if(!entered){enter();return;}if(document.activeElement===queryInput){queryInput.blur();queryResp.classList.remove('shown');return;}}
- if(e.key==='/'&&entered&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();queryInput.focus();}
+$('#query-form').addEventListener('submit',ev=>{ev.preventDefault();const value=queryInput.value.trim();if(!value)return;const r=navigate(value);showResponse(r.message);queryInput.value='';});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&dock.classList.contains('open')){setSearch(false);queryResp.classList.remove('shown');searchToggle.focus();}
+ if(e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement?.tagName||'')){e.preventDefault();setSearch(true);}
 });
 const menu=$('#menu-toggle'),nav=$('#site-nav');menu.addEventListener('click',()=>{const yes=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',yes);nav.classList.toggle('open',yes)});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
 // Scroll-driven cards: one control signal governs position, depth, and labels.
@@ -115,7 +114,7 @@ function updateWheel(p){
   const sc=mix(.44,1,init);
   card.style.transform=`translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,${z.toFixed(2)}px) rotateX(${rx.toFixed(2)}deg) scale(${sc.toFixed(3)})`;
   card.style.opacity=(init>.72&&Math.abs(d)>1.65)?'0':'1';card.style.zIndex=String(100-Math.round(Math.abs(d)*20));
-  card.tabIndex=(Math.abs(i-Math.round(pos))<1)?0:-1;
+  card.tabIndex=0;
  });
  const near=clamp(Math.round(pos),0,3);if(near!==activeReel){activeReel=near;reelCurrent.textContent=`0${near+1} / 04`;reelTitle.textContent=titles[near];reelDescr.textContent=descriptions[near];indexBtns.forEach((b,i)=>{b.classList.toggle('active',i===near);if(i===near)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});}
  reelProgress.style.transform=`scaleX(${p.toFixed(4)})`;
@@ -154,12 +153,11 @@ function render(t){requestAnimationFrame(render);if(!visible)return;
  // The work reel uses scroll only, no hijack. It is naturally escapable.
  const rp=clamp((sy-reel.offsetTop)/Math.max(1,reel.offsetHeight-H));
  if(sy>reel.offsetTop-H&&sy<reel.offsetTop+reel.offsetHeight+H)updateWheel(rp);
- if(!reduced.matches && entered && frameCount%2===0 && sy<opening.offsetHeight+H*.5){drawSphere(ctx,cw,ch,t,false)}
- if(!entered && !reduced.matches && frameCount%2===0)drawSphere(ectx,ew,eh,t,true);
+ if(!reduced.matches && (!mobile.matches || frameCount%2===0) && sy<opening.offsetHeight+H*.5){drawSphere(ctx,cw,ch,t,false)}
  if(customCursor.style.opacity!=='0'){cursorX+=((pointer.x)-cursorX)*.21;cursorY+=((pointer.y)-cursorY)*.21;customCursor.style.transform=`translate3d(${(cursorX-(customCursor.classList.contains('view')?35:14)).toFixed(1)}px,${(cursorY-(customCursor.classList.contains('view')?35:14)).toFixed(1)}px,0)`;}
  if(frameCount%2===0){$$('.chapter-visual').forEach(el=>{const r=el.getBoundingClientRect();if(r.bottom<0||r.top>H)return;const f=clamp((r.top+r.height/2-H/2)/H,-1,1);el.querySelector('img').style.transform=`translate3d(0,${(-f*4).toFixed(2)}%,0) scale(1.13)`;});}
 }
 requestAnimationFrame(render);
-// Never keep users trapped behind a dialog if the browser has restored their scroll position.
-if(location.hash&&location.hash!=='#top'){enter();setTimeout(()=>goTo(location.hash),70)}
+// Respect deep links; no modal entrance blocks content or keyboard access.
+if(location.hash&&location.hash!=='#top'){setTimeout(()=>goTo(location.hash),70)}
 })();

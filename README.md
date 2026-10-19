@@ -1,14 +1,9 @@
-# Deepnil Ray — public portfolio
+# Deepnil Ray — Research & Science Communication
 
-Live: https://deepnilray.github.io/deepnil-ray-portfolio/
+Static professional website at https://deepnilray.github.io/deepnil-ray-portfolio/.
 
-This site presents only work and affiliations that are independently findable in public profiles and publications. No information from private ChatGPT conversations should be used as a source for its biography, claims, projects, captions, or links.
+Public-only biography, sourced directly to The NoRCEL Institute team listing, Ashoka University affiliation documented via ResearchGate, and independently accessible publication records. Chat conversations are never publication sources. Preprints are labelled distinctly from journal publications, and image artwork is clearly labelled illustrative.
 
-Primary public sources:
-- NoRCEL Institute team: https://norcel.net/the-norcel-team/
-- ResearchGate public profile: https://www.researchgate.net/profile/Deepnil-Ray
-- NoRCEL authored article: https://norcel.net/the-asteroid-belt/
-- SSRN public manuscript records linked from the website
-- LinkedIn: https://in.linkedin.com/in/deepnil-ray-a6a52a202
+The site starts directly at the portfolio (no gate). Search is deterministic section navigation, not an AI chatbot. Motion uses native scrolling, a continuously animated canvas globe when permitted, transform-based reveals, and reduced-motion fallbacks.
 
-The images are illustrations, not personal photographs or original research data. Preprints are labeled as such. GitHub Pages deploys this static site via .github/workflows/pages.yml on each push to main.
+Design and accessibility audit: See `AUDIT.md`. The GitHub Pages workflow deploys after each push to `main`.
