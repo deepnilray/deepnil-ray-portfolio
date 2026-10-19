@@ -1,31 +1,32 @@
-# Independent motion / visual design review
+# Independent Design & Motion Audit — Atlas Edition II
 
-## What the previous edition got wrong
+## Criticisms addressed
 
-- It removed paint work by making the large ASCII art static. That made the page **technically lighter but visually inert** when a visitor was not scrolling.
-- The enlarged image was the only substantial visible transform. Subsequent research work became a standard stacked list of editorial panels.
-- Multiple smaller reveals were subtle enough to be perceived as absent, especially on a single screenshot or brief visit.
-- It claimed smoothness without a moving preview or frame-difference check.
+**Software-site look.** Replaced product-style visual language with publication-scale typography, a photographic 3D folio, accessible editorial paper list and minimal functional glass.
 
-## Design decisions in this edition
+**Too little motion.** 3D ASCII sphere moves at rest; entry orbit and floating geometric accents animate independently, while the photographic image reveal and wheel respond to native scrolling.
 
-- **Visible movement at rest:** animated orbital entry and physically rotating ASCII globe, built from Fibonacci-lattice points.
-- **Motion with a narrative purpose:** sphere disperses -> image opens -> three research worlds blend -> reading slows into typography.
-- **Scroll-linked without scroll-jacking:** native browser scrolling with one time-based interpolation pass, `1-exp(-dt/.11)`, writes transforms and opacity only.
-- **Intermittent transition gaps avoided:** large text changes are deliberately scheduled to prevent two headlines occupying the same position.
-- **No software/agency styling:** no feature grids, marketing CTA cards, unnecessary glass panels, process acronyms or enormous nav labels. The single glass input has a practical function.
-- **Balanced performance:** no per-frame DOM character-field replacements, no canvas attached to the whole document, a reduced glyph count on mobile, and no imported animation library.
+**Disjoint transitions.** One scroll interpolation loop governs the stages. The hero character field fades to a solid background before the photograph expands; chapter images blend at complementary opacity weights; photo wheel is driven by the same scroll signal.
 
-## Observed browser checks
+**Side text too small.** Navigation metadata, wheel section labels, descriptions and page footnotes use sizes appropriate to their role and mobile breakpoints.
 
-- Browser-load checks performed in headless Chromium at 1440×900 and 390×844: zero JavaScript page errors; document width equalled viewport width.
-- Captures of the idle canvas 440 ms apart produced distinct image hashes at both viewport sizes; the sphere is not static.
-- Native `requestAnimationFrame` callbacks observed: 64 in 1.102 seconds desktop, 67 in 1.111 seconds mobile in the container. This is an approximate scheduling check, **not a guarantee of website rendering FPS** on user hardware.
-- Mobile menu and local input classification were tested.
-- Reduced-motion styles remove forced animated transitions.
+**Cliché text.** Replaced vague agency-style slogans with plain research copy and precise distinctions between published articles, SSRN preprints and illustrative images.
 
-## Limitations / to be confirmed
+**Overused glass.** Only the persistent inquiry input and entry input use glass surfaces.
 
-- Real scroll feel depends on hardware, browser rendering engine and input device; no universal frame-rate promise is possible.
-- Research works and profile text should receive the user's final factual confirmation.
-- The file ships offline; for external sharing it still requires uploading to a host.
+## Motion technique
+
+- `requestAnimationFrame`, frame-rate-independent dampening `1-exp(-dt/.11)`.
+- Canvas glyph rendering limited to the prologue, SVG/CSS orbit accents and deterministic character art generated only on resize.
+- GPU compositor transforms and opacity for image scale, wheel movement, scene drift and paper transitions.
+- Gallery ring-to-drum transition uses CSS perspective, `rotateZ`, `rotateX`, `translateZ`, and measured photo card geometry.
+- No global wheel event interception or scroll hijack; keyboard/direct navigation and reduced motion supported.
+
+## Verification
+
+- HTML parsable; local referenced image files exist; JS passed Node syntax check.
+- **Browser playback not re-tested in this session:** the container's Chromium rejected navigation to local and data URLs with ERR_BLOCKED_BY_ADMINISTRATOR. It would be misleading to claim visual motion/FPS performance verification. Verify interactively on GitHub Pages after deployment.
+
+## Known limitation
+
+The keyboard-first input routes via a deterministic local intent classifier; it does not generate dynamic answers. The GIF/photo artwork is illustrative. Public research claims may need final author review.

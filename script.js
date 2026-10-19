@@ -8,6 +8,12 @@
   const range = (v,a,b) => ease((v-a)/(b-a));
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const gate=$('#gate'), prologue=$('#prologue'), threshold=$('#threshold'), chapters=$('#chapters');
+  const works=$('#works-wheel'), wheelAxis=$('#wheel-axis'), wheelStage=$('#wheel-stage');
+  const wheelCards=$$('.wheel-tile'), wheelButtons=$$('[data-wheelgo]');
+  const wheelTitles=['The observational sky','Patterns and proofs','Science is for everyone','A record of the questions'];
+  const wheelDescs=['Finding the signal that a routine search passes over.','Sequences, generating functions and mathematical structure.','Building spaces for people to encounter serious science.','Papers, preprints, corrections and continuing inquiry.'];
+  const wheelCats=['01 / THE OBSERVATIONAL SKY','02 / MATHEMATICAL STRUCTURE','03 / SCIENCE COMMUNICATION','04 / WRITING & RECORDS'];
+  const ascii=$('#ascii-veil');
   const orb=$('#orb-canvas'), ctx=orb.getContext('2d',{alpha:true});
   const heroText=$('#hero-text'), heroCover=$('#hero-cover');
   const frame=$('#threshold-frame'), img=frame.querySelector('img'), giant=$('#threshold-giant');
@@ -18,8 +24,9 @@
   const progressBar=$('#read-progress');
   const header=$('#header');
   let vw=innerWidth, vh=innerHeight, dpr=1;
-  let heroEnd=1, thresholdBegin=1, thresholdTravel=1, chaptersBegin=1, chaptersTravel=1;
-  let desired=[0,0,0,0], current=[0,0,0,0];
+  let heroEnd=1, thresholdBegin=1, thresholdTravel=1, chaptersBegin=1, chaptersTravel=1, wheelBegin=1, wheelTravel=1;
+  let desired=[0,0,0,0,0], current=[0,0,0,0,0];
+  let lastWheelIndex=-1;
   let mouseX=0,mouseY=0,mouseTX=0,mouseTY=0, last=0, drawing=true,entered=false;
   const seedRandom = seed => () => {seed=(seed*1664525+1013904223)>>>0; return seed/4294967296;};
   const rng=seedRandom(451);
@@ -33,16 +40,37 @@
     dots.push({x:r*Math.cos(a),y,z:r*Math.sin(a),shift:rng()*Math.PI*2,kind:rng(),lum:rng()});
   }
   for(let i=0;i<110;i++)dust.push({x:rng(),y:rng(),r:1+rng()*1.9,ph:rng()*Math.PI*2});
+  function buildAscii(){
+    if(!ascii)return;
+    const charW=vw<700?5.3:7.2, lineH=vw<700?9.3:11.6;
+    const cols=Math.min(220,Math.ceil(vw/charW)+5), rows=Math.min(120,Math.ceil(vh/lineH)+4);
+    const rand=seedRandom(276199), characters='  .  :  . -  +   *  ·  / '; let result='';
+    for(let y=0;y<rows;y++){
+      for(let x=0;x<cols;x++){
+        const nx=x/cols, ny=y/rows;
+        const r=Math.hypot((nx-.73)*1.1,(ny-.45)*1.65);
+        const intensity=Math.max(0,1-r*1.2);
+        const threshold=intensity*.64 + .05;
+        const k=rand();
+        result+=k>threshold?' ':characters[(rand()*characters.length)|0];
+      }
+      result+='\n';
+    }
+    ascii.textContent=result;
+  }
   function resize(){
     vw=innerWidth; vh=innerHeight;
     heroEnd=Math.max(1,prologue.offsetHeight-vh);
     thresholdBegin=threshold.getBoundingClientRect().top+scrollY;
     thresholdTravel=Math.max(1,threshold.offsetHeight-vh);
+    wheelBegin=works.getBoundingClientRect().top+scrollY;
+    wheelTravel=Math.max(1,works.offsetHeight-vh);
     chaptersBegin=chapters.getBoundingClientRect().top+scrollY;
     chaptersTravel=Math.max(1,chapters.offsetHeight-vh);
     const box=orb.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,1.5);
     orb.width=Math.round(box.width*dpr); orb.height=Math.round(box.height*dpr);
     ctx.setTransform(dpr,0,0,dpr,0,0);
+    buildAscii();
     updateTargets();
   }
   function updateTargets(){
@@ -52,6 +80,7 @@
     desired[2]=clamp((s-chaptersBegin)/chaptersTravel);
     const inter=$('.interlude'); const r=inter.getBoundingClientRect();
     desired[3]=clamp((vh-r.top)/(vh+r.height));
+    desired[4]=clamp((s-wheelBegin)/wheelTravel);
     progressBar.style.transform='scaleX('+clamp(s/Math.max(1,document.documentElement.scrollHeight-vh))+')';
     header.classList.toggle('scrolled',s>70);
   }
@@ -98,11 +127,12 @@
     ctx.restore();ctx.globalAlpha=1;
   }
   function paint() {
-    const [h,p,c,i]=current;
+    const [h,p,c,i,w]=current;
     const fade=1-range(h,.60,.92);
     heroText.style.transform=`translate3d(0,${(-82*ease(h)).toFixed(2)}px,0) scale(${(1+.028*h).toFixed(4)})`;
     heroText.style.opacity=fade.toFixed(4);
     orb.style.opacity=(1-range(h,.71,1)).toFixed(4);
+    if(ascii){ascii.style.opacity=(.23*(1-range(h,.18,.86))).toFixed(3);ascii.style.transform=`translate3d(${(-h*28).toFixed(1)}px,${(h*48).toFixed(1)}px,0)`;}
     heroCover.style.opacity=range(h,.91,1).toFixed(4);
     const f=range(p,.055,.67);
     frame.style.transform=`translate3d(0,0,0) scale(${mix(vw<700?.58:.48,1,f).toFixed(5)})`;
@@ -115,6 +145,41 @@
     text.style.transform=`translate3d(0,${mix(74,0,range(p,.46,.67)).toFixed(2)}px,0)`;
     paper.style.transform=`translate3d(0,${(100-range(p,.855,1)*100).toFixed(3)}%,0)`;
     // The film chapters crossfade continuously with scroll, not by discrete click-triggered changes.
+    // Four-photo index: ring at rest -> deep 3D drum -> each work settles at centre.
+    if(works){
+      const turn=clamp((w-.025)/.91*5,0,4.42), morph=range(turn,0,1), activePos=clamp(turn-1,0,3);
+      const rect=wheelStage.getBoundingClientRect();
+      const cardW=Math.min(rect.width*(vw<700?.62:.32),vw<700?330:470);
+      const cardH=cardW/1.34;
+      const ringR=cardH*(vw<700?.77:1.06), drumR=cardH*1.8;
+      const ringScale=.45;
+      wheelStage.style.perspective=Math.max(760,cardH*4)+'px';
+      wheelAxis.style.transform=`translate3d(0,0,${(-morph*drumR).toFixed(2)}px)`;
+      const a=(i,j)=> i===j;
+      for(let j=0;j<wheelCards.length;j++){
+        const delta=j-activePos,rad=delta*42*Math.PI/180;
+        const translateX=morph*(-cardH*1.40*(1-Math.cos(rad)));
+        const angleRing=(j-0.25)*(360/wheelCards.length);
+        const tilt=delta*42*morph;
+        const card=wheelCards[j];
+        card.style.transform=`translateX(${translateX.toFixed(2)}px) rotateZ(${((1-morph)*angleRing).toFixed(2)}deg) translateY(${(-(1-morph)*ringR).toFixed(2)}px) rotateX(${tilt.toFixed(2)}deg) translateZ(${(morph*drumR).toFixed(2)}px)`;
+        card.style.opacity=(morph>.62&&Math.abs(delta)>1.75)?'0':'1';
+        card.style.zIndex=String(80-Math.round(Math.abs(delta)*3));
+        card.firstElementChild.style.transform=`scale(${mix(ringScale,1,morph).toFixed(4)})`;
+        card.style.pointerEvents=(morph>.68&&Math.abs(delta)>.60)?'none':'auto';
+      }
+      const nearest=Math.min(3,Math.max(0,Math.round(activePos)));
+      if(lastWheelIndex!==nearest){
+        lastWheelIndex=nearest;
+        $('#wheel-no').innerHTML=String(nearest+1).padStart(2,'0')+' <i>/ 04</i>';
+        $('#wheel-title').textContent=wheelTitles[nearest];
+        $('#wheel-desc').textContent=wheelDescs[nearest];
+        $('#wheel-active-category').textContent=wheelCats[nearest];
+        wheelButtons.forEach((b,j)=>b.setAttribute('aria-current',String(j===nearest)));
+      }
+      $('.wheel-heading').style.opacity=(1-range(w,.72,.94)*.68).toFixed(3);
+      $('.wheel-details').style.opacity=range(w,.07,.22).toFixed(3);
+    }
     const pos=clamp(c*2.44,0,2);
     const n=Math.min(2,Math.floor(pos)),m=ease(pos-n);
     for(let j=0;j<3;j++){
@@ -179,6 +244,12 @@
     }
     const target=$('#'+dest);if(target)target.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});
   }
+  // Accessible index buttons scroll to the corresponding turn, without hijacking the wheel.
+  wheelButtons.forEach(button=>button.addEventListener('click',()=>{
+    const index=Number(button.dataset.wheelgo);
+    const percentage=.025+(1+index)/5*.91;
+    scrollTo({top:wheelBegin+wheelTravel*percentage,behavior:reduced.matches?'instant':'smooth'});
+  }));
   let gateTimer;
   function enter(q=''){
     if(entered)return;entered=true;document.body.classList.add('entered');
@@ -194,10 +265,10 @@
   const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}, {threshold:.08,rootMargin:'0px 0px -8% 0px'});
   $$('.papers-list a,.intro-title,.papers h2,.about-title,.about-detail,.contact h2').forEach(el=>observer.observe(el));
   // If animations are disabled by the visitor, the content is presented immediately.
-  if(reduced.matches){current=[0,0,0,0];resize();paint();renderSphere(0,0);}
+  if(reduced.matches){current=[0,0,0,0,0];resize();current=[...desired];paint();renderSphere(0,0);}
   else{resize();requestAnimationFrame(animate);}
   if(location.hash&&location.hash!=='#top')enter();
   setTimeout(()=>{if(!entered)$('#gate-input').focus({preventScroll:true});},170);
   // Public debugging hook for deterministic verification of frame-to-frame motion.
-  window.__motionDebug=()=>({hero:current[0],image:current[1],chapters:current[2],canvasSize:[orb.width,orb.height],entered});
+  window.__motionDebug=()=>({hero:current[0],image:current[1],wheel:current[4],chapters:current[2],canvasSize:[orb.width,orb.height],entered});
 })();
