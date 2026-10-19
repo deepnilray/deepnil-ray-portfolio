@@ -1,36 +1,37 @@
-# Deepnil Ray — An Atlas of Questions (Motion Edition II)
+# Deepnil Ray — The Unfinished Atlas
 
-A continuous, cinematic, accessible personal research portfolio hosted on GitHub Pages. Open `index.html` or visit the published GitHub Pages address.
+Personal research portfolio / 2026. Live at https://deepnilray.github.io/deepnil-ray-portfolio/
 
-## Visual system
+## Design direction
 
-- A **Say hi** entrance opens with a smooth circular iris instead of a conventional landing-page wipe. Visitors can enter without typing.
-- An always-moving ASCII sphere is built from points on a 3D Fibonacci lattice. Its rotation responds gently to the pointer.
-- A field of fixed, generative ASCII characters dissolves across the first scroll, transitioning into a solid background and an edge-to-edge photographic scene.
-- A photographic folio wheel opens from a ring into a 3D scroll-driven drum, inspired by the `WorksWheel` interaction supplied by the site owner.
-- Astronomy, mathematics and science communication appear as separate full-screen animated research chapters, followed by readable links to source materials.
-- A subtle glass **Ask** input remains usable throughout the site. Each question is independently classified using local text rules and routes to the relevant section. **It is not a live AI model**, and it makes no external requests.
-- Glass is confined to navigation and input surfaces; there are no product-style cards or generic template hero sections.
+An editorial observatory rather than a software-product site. Two visual registers: ink-dark observation and warm paper for arguments and published work. Kinetic type, a generated point-sphere, a fullscreen scroll-linked reveal, a bounded 3D research index, real paper links, and a compact conversational navigator.
 
-## Files
+## Features
 
-- `index.html` — copy, semantic document, links and project labels.
-- `styles.css` — visual direction, type, scroll choreography and mobile rules.
-- `script.js` — ASCII render, wheel transforms, scroll interpolation, input classification and reduced-motion support.
-- `assets/` — self-contained illustrative image assets (not astronomical observations or portraits).
-- `MOTION_AUDIT.md` — implementation and verification notes.
+- Short optional "Say hi" entry. Visitors may skip it; first interaction never demands an answer.
+- Constantly moving generative character sphere responding to cursor position.
+- Scroll transforms based on one `requestAnimationFrame` driver: no wheel-event hijacking.
+- Canvas animation pauses when the page is hidden or the hero is offscreen. Reduced-motion and touch-friendly fallbacks.
+- Long-form scrollytelling: visual observation → four research directions → concrete projects → public writing → biography and collaboration.
+- Input classifies each visitor's text independently and scrolls to the relevant section; it **does not falsely claim AI-generated responses**.
+- Static HTML/CSS/JS and local image assets: suitable for GitHub Pages, no build and no API keys.
 
-## GitHub Pages
+## Project structure
 
-Repository: https://github.com/deepnilray/deepnil-ray-portfolio
+- `index.html`: real content and accessible structure
+- `style.css`: typography, layout, responsive states
+- `app.js`: rendering and intent-based navigation
+- `assets/`: six bundled images
+- `favicon.svg`: original field/monogram mark
 
-Site address once Pages is enabled: https://deepnilray.github.io/deepnil-ray-portfolio/
+## Editorial integrity
 
-GitHub Pages configuration: Settings → Pages → Deploy from a branch → `main` / `(root)`.
+All preprints are identified as preprints rather than peer-reviewed research. Interpretive illustrations are not presented as measured astronomical data. Affiliation details should be confirmed periodically. No private contact information is published.
 
-## Editorial / scientific accuracy
+## Independent engineering review
 
-- Items explicitly designated SSRN preprints should not be interpreted as accepted, independently verified proofs.
-- Artwork is illustrative, not calibrated scientific data.
-- Before final public release, the site's owner should verify ongoing affiliation descriptions and which work is ready to feature.
-- No analytics, tracking, network API, API keys or dependencies are required for site functionality.
+Source and syntax checks passed locally: JavaScript parses with Node, all on-page anchor targets exist, referenced bundled assets exist, no external JS dependencies, and reduced-motion and mobile states are authored. Browser automation was restricted by the environment's administrator policy; no unsupported browser-performance claim is made.
+
+## Deployment
+
+The existing `.github/workflows/pages.yml` workflow publishes from `main` via GitHub Actions. All further updates should be committed to this same repository.
